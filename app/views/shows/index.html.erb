@@ -1,0 +1,34 @@
+<h1>Show list</h1>
+<p><%= link_to "Add firework", fireworks_path %></p>
+
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+
+<h3>Your shows</h3>
+<% @shows.each do |show| %>
+  <p><%= show.name %></p>  
+<% end %>
+
+<h3>Add a show</h3>
+<%= form_for  @show  do |f| %>
+  <%= f.label :name, 'Show name' %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Save show' %>
+<% end %>
+
+<h3>Your Boards</h3>
+<% @boards.each do |board| %>
+  <p><%= board.name %></p>  
+<% end %>
+
+<h3>Add a board</h3>
+<%= form_for  @board  do |f| %>
+  <%= f.label :name, 'Board name' %>
+  <%= f.text_field :name %>
+
+  <%= f.label :boardID, 'Board ID' %>
+  <%= f.text_field :boardID %>
+
+  <%= f.submit 'Save board' %>
+<% end %>
