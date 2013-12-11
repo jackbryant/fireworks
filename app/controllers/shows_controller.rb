@@ -19,9 +19,14 @@ class ShowsController < ApplicationController
     end
   end
 
-   def destroy
+  def edit
+      @show = Show.find(params[:id])
+      @event = Event.new
+      # @fireworks = Firework.all
+  end
 
-    # raise params.inspect
+
+  def destroy
     @show = Show.find(params[:id])
     if @show.destroy 
       flash[:notice] = 'Show removed'

@@ -25,3 +25,10 @@ Feature: Shows
         Then I should see "Show removed"
         And I should not see "Show 3"
 
+  Scenario: I can navigate to edit show
+        Given there are "3" shows
+        And I am on the shows page
+        And I follow "edit" within "[data-show-id='3']"
+        Then I should see "Edit Show 3"
+   
+

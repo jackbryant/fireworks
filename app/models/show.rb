@@ -1,3 +1,3 @@
 class Show < ActiveRecord::Base
-   has_many :fireworks
+   has_many :events
 end

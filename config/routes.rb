@@ -3,9 +3,12 @@ Fireworks::Application.routes.draw do
 
   root "welcome#index"
 
-  resources :shows
-   resources :boards
-   resources :fireworks
+  resources :shows do
+    resources :events
+  end
+  
+  resources :boards
+  resources :fireworks
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

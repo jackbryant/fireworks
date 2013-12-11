@@ -29,7 +29,7 @@ end
 
 Given(/^there are "(.*?)" shows$/) do |num_of_shows|
   num_of_shows.to_i.times do |num|
-      FactoryGirl.create(:show, name: "Show #{num}")
+      FactoryGirl.create(:show, name: "Show #{num+1}")
   end
 end
 
@@ -42,7 +42,7 @@ end
 
 Given(/^there are "(.*?)" fireworks$/) do |num_of_fireworks|
   num_of_fireworks.to_i.times do |num|
-      FactoryGirl.create(:firework, name: "Firework #{num}")
+      FactoryGirl.create(:firework, name: "Firework #{num+1}")
   end
 end
 

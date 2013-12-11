@@ -1,0 +1,29 @@
+<p><%= link_to "Your shows", shows_path %></p>
+<h3>Edit <%= @show.name %></h3>
+
+<% @show.events.each do |event| %>
+<ol>
+  <li>Start : <%= event.start %></li>
+  <li>End : <%= event.end %></li>
+  <li>Content : <%= event.content %></li>
+</ol>
+<% end %>
+
+<h3>Add an Event</h3>
+<%= form_for @event, url: show_events_path(@show) do |f| %>
+  <%= f.label :start %>
+  <%= f.text_field :start %>
+
+  <%= f.label :end, 'end time (optional)' %>
+  <%= f.text_field :end %>
+
+  <%= f.label :content, 'Name the thing' %>
+  <%= f.text_field :content %>
+
+
+  
+
+  <%= f.hidden_field :show_id, value: @show.id  %>
+
+  <%= f.submit 'Save Event' %>
+<% end %>

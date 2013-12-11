@@ -8,7 +8,10 @@
 <h3>Your shows</h3>
 <% @shows.each do |show| %>
 <ul>
-  <li data-show-id='<%= show.id %>'><%= show.name %> <%= link_to 'remove', show_path(show), :method => :delete %></li>  
+  <li data-show-id='<%= show.id %>'><%= show.name %>
+    <%= link_to 'edit', edit_show_path(show) %>
+    <%= link_to 'remove', show_path(show), :method => :delete %>
+  </li>  
   </ul>
 <% end %>
 
@@ -23,7 +26,9 @@
 
 <% @boards.each do |board| %>
 <ul>
-  <li data-board-id='<%= board.id %>' >Name : <%= board.name %>  <%= link_to 'remove', board_path(board), :method => :delete %> </li>  
+  <li data-board-id='<%= board.id %>' >Name : <%= board.name %>  
+  <%= link_to 'remove', board_path(board), :method => :delete %> 
+  </li>  
   <li>ID : <%= board.boardID %></li>  
 </ul>
 <% end %>
