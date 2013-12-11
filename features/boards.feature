@@ -12,3 +12,10 @@ Feature: Boards
         Then I should see "Your Boards"
         And I should see "Board 1"
         And I should see "Board 4"
+
+   Scenario: I can delete a board
+        Given there are "3" boards
+        And I am on the shows page
+        And I follow "remove" within "[data-board-id='3']"
+        Then I should see "Board removed"
+        And I should not see "Board 3"

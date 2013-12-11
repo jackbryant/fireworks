@@ -18,3 +18,10 @@ Feature: Shows
         And I click "Add firework"
         Then I should see "The fireworks"
 
+  Scenario: I can delete a show
+        Given there are "3" shows
+        And I am on the shows page
+        And I follow "remove" within "[data-show-id='3']"
+        Then I should see "Show removed"
+        And I should not see "Show 3"
+

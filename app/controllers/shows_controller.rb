@@ -24,7 +24,7 @@ class ShowsController < ApplicationController
     # raise params.inspect
     @show = Show.find(params[:id])
     if @show.destroy 
-      flash[:notice] = 'Show deleted'
+      flash[:notice] = 'Show removed'
         redirect_to @show
       else
         raise "something the fuck went wrong in the Shows Controller (destroy)"
