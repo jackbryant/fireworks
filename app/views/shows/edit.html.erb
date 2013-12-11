@@ -1,13 +1,156 @@
-<p><%= link_to "Your shows", shows_path %></p>
-<h3>Edit <%= @show.name %></h3>
+<!DOCTYPE html>
+<html>
+    <head>
+    <%= stylesheet_link_tag "waveform" %>
+    <%= stylesheet_link_tag "timeline" %>
 
-<% @show.events.each do |event| %>
-<ol>
-  <li>Start : <%= event.start %></li>
-  <li>End : <%= event.end %></li>
-  <li>Content : <%= event.content %></li>
-</ol>
-<% end %>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                      
+        <script>   
+        function drawVisualization(dataVal, duration) {
+
+        var data = [
+        {
+          'start': new Date(2010,0,1,0,1),
+          'content': 'Firework',
+          'customProps': { 'fired': false, 'num': 1, 'colour': 100 }
+        },
+        {
+          'start': new Date(2010,0,1,0,1, 10),
+          'content': 'Firework 2',
+          'customProps': { 'fired': false, 'num': 2, 'colour': 800 }
+        }
+        ]
+
+        var options = {
+          'width':  '100%',
+          'height': '200px',
+          'editable': true, 
+          'style': 'box',
+          "min": new Date(2010, 0, 1 , 0, 0,0,0),
+          "max": new Date(2010, 0, 1 , 0, 0, 0, duration.duration),
+          "zoomMin": 10,
+          "zoomMax": 1000 * 60 * 60,
+          "zoomable": true,
+          "showMajorLabels": false,
+          "animateZoom": true,
+          "showCustomTime": true
+        };
+
+        timeline = new links.Timeline(document.getElementById('mytimeline'));
+        links.events.addListener(timeline, 'ready', function() {
+          allFireworks = timeline.getData();
+          timeline.setVisibleChartRange(new Date(2010, 0, 1 , 0, 0,0,0), new Date(2010, 0, 1 , 0, 0, 0, duration.duration));
+         });
+
+        timeline.draw(data, options);
+    }
+
+      var timeline;
+      $(function() {
+
+        wavesurfer.on('ready', function () {
+          wavesurfer.play();
+          var duration = wavesurfer.backend.getDuration();
+          drawVisualization([], {duration: duration * 1000});
+            
+          wavesurfer.backend.on('audioprocess', function(progress) {
+            var secs = Math.floor(progress)
+            var ms = (progress - secs) * 1000
+            var date = new Date(2010, 0, 1, 0, 0, secs, ms);
+            timeline.setCustomTime(date);
+          });
+
+          links.events.addListener(timeline, 'timechange', function (time) {
+              var timeline_minutes_in_msecs = time.time.getMinutes() * 60 * 1000
+              var timeline_seconds_in_msecs = time.time.getSeconds() * 1000
+              var timeline_milliseconds_in_msecs = time.time.getMilliseconds()
+              var timeline_total_time_in_msecs = timeline_minutes_in_msecs + timeline_seconds_in_msecs + timeline_milliseconds_in_msecs
+              
+              wavesurfer.seekTo(timeline_total_time_in_msecs / (wavesurfer.backend.getDuration() * 1000));
+              
+              
+          });
+        });
+
+
+        // $(document).on('mousedown', function(e) {
+        //   wavesurfer.pause();
+        // })
+
+      });
+
+    </script>
+  
+    </head>
+    <p><%= link_to "Your shows", shows_path %></p>
+    <h3>Edit <%= @show.name %></h3>
+
+    <% @show.events.each do |event| %>
+    <ol>
+      <li>Start : <%= event.start %></li>
+      <li>End : <%= event.end %></li>
+      <li>Content : <%= event.content %></li>
+    </ol>
+    <% end %>
+    <div id="mytimeline"></div>
+
+    <body itemscope itemtype="http://schema.org/WebApplication">
+        <div class="container">
+            <div class="header">
+            </div>
+
+            <div id="demo">
+                <div id="waveform">
+                    <div class="progress progress-striped active" id="progress-bar">
+                        <div class="progress-bar progress-bar-info"></div>
+                    </div>
+
+                    <!-- Here be the waveform -->
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" data-action="back">
+                        <i class="glyphicon glyphicon-step-backward"></i>
+                        Backward
+                    </button>
+
+                    <button class="btn btn-primary" data-action="play">
+                        <i class="glyphicon glyphicon-play"></i>
+                        Play
+                        /
+                        <i class="glyphicon glyphicon-pause"></i>
+                        Pause
+                    </button>
+
+                    <button class="btn btn-primary" data-action="forth">
+                        <i class="glyphicon glyphicon-step-forward"></i>
+                        Forward
+                    </button>
+
+                    <button class="btn btn-primary" data-action="toggle-mute">
+                        <i class="glyphicon glyphicon-volume-off"></i>
+                        Toggle Mute
+                    </button>
+
+                    <div class="mark-controls">
+                        <button class="btn btn-success" data-action="green-mark">
+                            <i class="glyphicon glyphicon-flag"></i>
+                            Set green mark
+                        </button>
+
+                        <button class="btn btn-danger" data-action="red-mark">
+                            <i class="glyphicon glyphicon-flag"></i>
+                            Set red mark
+                        </button>
+                    </div>
+                </div>
+
+                <p class="lead pull-center" id="drop">
+                    Drop a song here
+                </p>
+            </div>
 
 <h3>Add an Event</h3>
 <%= form_for @event, url: show_events_path(@show) do |f| %>
@@ -27,3 +170,5 @@
 
   <%= f.submit 'Save Event' %>
 <% end %>
+</body>
+</html>
