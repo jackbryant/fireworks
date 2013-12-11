@@ -1,0 +1,17 @@
+<h3>Edit <%= @firework.name %></h3>
+
+<%= form_for  @firework do |f| %>
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name %>
+
+  <%= f.label :duration, 'Duration' %>
+  <%= f.text_field :duration %>
+
+   <%= f.label :delay, 'Delay' %>
+  <%= f.text_field :delay %>
+
+   <%= f.label :colour, 'Colour' %>
+  <%= f.text_field :colour %>
+
+  <%= f.submit 'Save firework' %>
+<% end %>

@@ -1,4 +1,6 @@
 class FireworksController < ApplicationController
+  in_place_edit_for :firework, :name
+
   def index
     @firework = Firework.new
     @fireworks = Firework.all
@@ -9,6 +11,22 @@ class FireworksController < ApplicationController
     @firework = Firework.create(firework_params)
     if @firework.save 
       flash[:notice] = 'New firework added'
+      redirect_to fireworks_path
+    else
+      raise "something the fuck went wrong in the Fireworks Controller (create)"
+    end
+  end
+
+    def edit
+      @firework = Firework.find(params[:id])
+    end
+
+  def update
+     @firework = Firework.find(params[:id])
+
+    
+    if @firework.update(firework_params) 
+      flash[:notice] = 'Firework updated'
       redirect_to fireworks_path
     else
       raise "something the fuck went wrong in the Fireworks Controller (create)"

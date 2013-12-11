@@ -22,7 +22,7 @@ class ShowsController < ApplicationController
   def edit
       @show = Show.find(params[:id])
       @event = Event.new
-      # @fireworks = Firework.all
+      @fireworks = Firework.all
   end
 
 

@@ -13,7 +13,11 @@
     <% @fireworks.each do |firework| %>
     
     <ul>
-      <li data-firework-id='<%= firework.id %>' >Name : <%= firework.name %> <%= link_to 'remove', firework_path(firework), :method => :delete %></li>
+      <li data-firework-id='<%= firework.id %>' >Name : <%= firework.name %>
+      <%= link_to 'edit', edit_firework_path(firework) %>
+       <%= link_to 'remove', firework_path(firework), :method => :delete %>
+    
+      </li>
       <li>Delay : <%= firework.delay %></li>
       <li>Duration : <%= firework.duration %></li>
       <li>Colour: <%= firework.colour %></li>
