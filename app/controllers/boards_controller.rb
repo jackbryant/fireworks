@@ -14,9 +14,21 @@ class BoardsController < ApplicationController
     end
   end
 
+  def destroy
+
+    # raise params.inspect
+    @board = Board.find(params[:id])
+    if @board.destroy 
+      flash[:notice] = 'Board removed'
+        redirect_to shows_path
+      else
+        raise "something the fuck went wrong in the Board Controller (destroy)"
+    end
+  end
+
 
 
   def board_params
-    params.require(:board).permit(:name)
+    params.require(:board).permit(:name,:boardID)
   end
 end

@@ -1,3 +1,12 @@
+
+module WithinHelpers
+  def with_scope(locator)
+    locator ? within(locator) { yield } : yield
+  end
+end
+World(WithinHelpers)
+
+
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -34,6 +43,16 @@ end
 Given(/^there are "(.*?)" fireworks$/) do |num_of_fireworks|
   num_of_fireworks.to_i.times do |num|
       FactoryGirl.create(:firework, name: "Firework #{num}")
+  end
+end
+
+Then(/^I should not see "(.*?)"$/) do |text|
+   page.should_not have_content(text)
+end
+
+When /^(?:|I )follow "([^\"]*)"(?: within "([^\"]*)")?$/ do |link, selector|
+  with_scope(selector) do
+    click_link(link)
   end
 end
 

@@ -1,2 +1,39 @@
 <h3>The fireworks</h3>
 <p><%= link_to "Your shows", shows_path %></p>
+<% if flash[:notice] %>
+<p><%= flash[:notice] %></p>
+<% end %>
+<h3>Fireworks list</h3>
+
+
+
+<% if @fireworks.count == 0 %>
+    <p>You've not added any fireworks</p>
+<% else %>
+    <% @fireworks.each do |firework| %>
+    
+    <ul>
+      <li data-firework-id='<%= firework.id %>' >Name : <%= firework.name %> <%= link_to 'remove', firework_path(firework), :method => :delete %></li>
+      <li>Delay : <%= firework.delay %></li>
+      <li>Duration : <%= firework.duration %></li>
+      <li>Colour: <%= firework.colour %></li>
+      </ul>
+    <% end %>
+<% end %>
+
+<h3>Add a Firework</h3>
+<%= form_for  @firework do |f| %>
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name %>
+
+  <%= f.label :duration, 'Duration' %>
+  <%= f.text_field :duration %>
+
+   <%= f.label :delay, 'Delay' %>
+  <%= f.text_field :delay %>
+
+   <%= f.label :colour, 'Colour' %>
+  <%= f.text_field :colour %>
+
+  <%= f.submit 'Save firework' %>
+<% end %>

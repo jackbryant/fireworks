@@ -60,6 +60,9 @@ group :development, :test do
     
     #to test emails 
     gem 'capybara-email'
+
+     # gem 'guard'
+     gem 'guard-cucumber'
      
 end
 

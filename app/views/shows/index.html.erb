@@ -7,7 +7,9 @@
 
 <h3>Your shows</h3>
 <% @shows.each do |show| %>
-  <p><%= show.name %></p>  
+<ul>
+  <li><%= show.name %> <%= link_to 'remove', show_path(show), :method => :delete %></li>  
+  </ul>
 <% end %>
 
 <h3>Add a show</h3>
@@ -18,9 +20,14 @@
 <% end %>
 
 <h3>Your Boards</h3>
+
 <% @boards.each do |board| %>
-  <p><%= board.name %></p>  
+<ul>
+  <li>Name : <%= board.name %>  <%= link_to 'remove', board_path(board), :method => :delete %> </li>  
+  <li>ID : <%= board.boardID %></li>  
+</ul>
 <% end %>
+
 
 <h3>Add a board</h3>
 <%= form_for  @board  do |f| %>

@@ -17,3 +17,4 @@ Feature: Shows
         Given I am on the shows page
         And I click "Add firework"
         Then I should see "The fireworks"
+
