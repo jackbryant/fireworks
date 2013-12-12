@@ -6,6 +6,9 @@ $ ->
   $('#drop')[0].addEventListener 'drop', (e) ->
     file = e.dataTransfer.files[0]
     reader = new FileReader()
+    wave = $('.controls')
+    wave.css('visibility', 'visible')
+
   # reader.addEventListener('progress', function (e) {
   #     my.onProgress(e);
   # });
