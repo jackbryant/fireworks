@@ -37,7 +37,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Init
     wavesurfer.init(options);
     // Load audio from URL
-    wavesurfer.load('/imperial.mp3');
+
+    // wavesurfer.load('/imperial.mp3')
+
+    if (track_url) { 
+       wavesurfer.load(track_url);
+    }
 
     // Start listening to drag'n'drop on document
     wavesurfer.bindDragNDrop('#drop');
@@ -53,7 +58,9 @@ wavesurfer.on('ready', function () {
 (function () {
     var eventHandlers = {
         'play': function () {
-            wavesurfer.playPause();
+            if(!$('input:focus').length) {
+                wavesurfer.playPause();
+            }
         },
 
         'green-mark': function () {
@@ -93,7 +100,7 @@ wavesurfer.on('ready', function () {
         };
         if (e.keyCode in map) {
             var handler = eventHandlers[map[e.keyCode]];
-            e.preventDefault();
+            if(!$('input:focus').length) e.preventDefault();
             handler && handler(e);
         }
     });

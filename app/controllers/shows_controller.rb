@@ -8,7 +8,6 @@ class ShowsController < ApplicationController
   end
 
   def create
-    # puts params.inspect
     @show = Show.create(show_params)
 
     if @show.save 
@@ -19,10 +18,14 @@ class ShowsController < ApplicationController
     end
   end
 
+  def update
+    raise params
+  end
+
   def edit
-      @show = Show.find(params[:id])
-      @event = Event.new
-      @fireworks = Firework.all
+    @show = Show.find(params[:id])
+    @event = Event.new
+    @fireworks = Firework.all
   end
 
 
