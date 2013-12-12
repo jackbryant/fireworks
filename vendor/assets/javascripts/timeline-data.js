@@ -44,10 +44,29 @@ $(document).ready(function() {
    
 });
 
+function addFireworkToTimeline(fireworkId, fireworkName) {
+            var range = timeline.getVisibleChartRange();
+            var start = new Date((range.start.valueOf() + range.end.valueOf()) / 2);
+            var content = fireworkName
+
+            timeline.addItem({
+                'start': start,
+                'content': content
+            });
+
+            console.log(timeline)
+           
+            var count = timeline.items.length;
+             console.log(timeline.items.length)
+
+            timeline.setSelection([{
+                'row': count-1
+            }]);
+            onChangeOrCreate()
+        }
+
 function rowOfSelectedItem() {
    var timelineObject = timeline.getSelection();
-   
-   
 
    if (timelineObject.length) {
     if (timelineObject[0].row != undefined) {
@@ -91,9 +110,9 @@ function onChangeOrCreate() {
   // this needs to be the real firework.
   itemToUpdateData['firework_id'] = 5
 
-  console.log(itemToUpdateData);
+  // console.log(itemToUpdateData);
   saveRecord(baseApiUrl, itemToUpdateData ); 
-  console.log("item " + rowOfSelectedItem() + " changed")
+  // console.log("item " + rowOfSelectedItem() + " changed")
 }
 
 function getCurrentShowID(){
@@ -101,8 +120,7 @@ function getCurrentShowID(){
 }
 
 function saveRecord(api_url, record) {
-
-   
+ 
   $.ajax({
         url: api_url ,
         type: "post",
@@ -169,7 +187,11 @@ function formatApiDataForTimeline(jsonString) {
       for (var key in data) {
         if (data.hasOwnProperty(key)) {
           data[key]["start"] = new Date( data[key]["start"] );
+          
+          
+          if (data[key]["end"]) {
           data[key]["end"] = new Date ( data[key]["end"] );
+          }
           data[key]["databaseID"] =  data[key]["id"] ;
         }
       }
@@ -190,6 +212,7 @@ function drawVisualization(dataVal) {
         'height': '300px',
         'editable': true,   // enable dragging and editing events
         'style': 'box',
+        'snapEvents' : false,
         // 'min': new Date(2010, 0, 1 , 0, 0,0,0),
         // 'max': new Date(2010, 0, 1 , 0, 30,0,0),
          // 'zoomMin': 1000 * 60 * 60 * 24, // set zoom min at 1 hour

@@ -3000,71 +3000,71 @@ links.Timeline.prototype.onMouseUp = function (event) {
  * Double click event occurred for an item
  * @param {Event}  event
  */
-links.Timeline.prototype.onDblClick = function (event) {
-    var params = this.eventParams,
-        options = this.options,
-        dom = this.dom,
-        size = this.size;
-    event = event || window.event;
+// links.Timeline.prototype.onDblClick = function (event) {
+//     var params = this.eventParams,
+//         options = this.options,
+//         dom = this.dom,
+//         size = this.size;
+//     event = event || window.event;
 
-    if (params.itemIndex != undefined) {
-        var item = this.items[params.itemIndex];
-        if (item && this.isEditable(item)) {
-            // fire the edit event
-            this.trigger('edit');
-        }
-    }
-    else {
-        if (options.editable) {
-            // create a new item
+//     if (params.itemIndex != undefined) {
+//         var item = this.items[params.itemIndex];
+//         if (item && this.isEditable(item)) {
+//             // fire the edit event
+//             this.trigger('edit');
+//         }
+//     }
+//     else {
+//         if (options.editable) {
+//             // create a new item
 
-            // get mouse position
-            params.mouseX = links.Timeline.getPageX(event);
-            params.mouseY = links.Timeline.getPageY(event);
-            var x = params.mouseX - links.Timeline.getAbsoluteLeft(dom.content);
-            var y = params.mouseY - links.Timeline.getAbsoluteTop(dom.content);
+//             // get mouse position
+//             params.mouseX = links.Timeline.getPageX(event);
+//             params.mouseY = links.Timeline.getPageY(event);
+//             var x = params.mouseX - links.Timeline.getAbsoluteLeft(dom.content);
+//             var y = params.mouseY - links.Timeline.getAbsoluteTop(dom.content);
 
-            // create a new event at the current mouse position
-            var xstart = this.screenToTime(x);
-            var xend = this.screenToTime(x  + size.frameWidth / 10); // add 10% of timeline width
-            if (options.snapEvents) {
-                this.step.snap(xstart);
-                this.step.snap(xend);
-            }
+//             // create a new event at the current mouse position
+//             var xstart = this.screenToTime(x);
+//             var xend = this.screenToTime(x  + size.frameWidth / 10); // add 10% of timeline width
+//             if (options.snapEvents) {
+//                 this.step.snap(xstart);
+//                 this.step.snap(xend);
+//             }
 
-            var content = options.NEW;
-            var group = this.getGroupFromHeight(y);   // (group may be undefined)
-            var preventRender = true;
-            this.addItem({
-                'start': xstart,
-                'end': xend,
-                'content': content,
-                'group': this.getGroupName(group)
-            }, preventRender);
-            params.itemIndex = (this.items.length - 1);
-            this.selectItem(params.itemIndex);
+//             var content = options.NEW;
+//             var group = this.getGroupFromHeight(y);   // (group may be undefined)
+//             var preventRender = true;
+//             this.addItem({
+//                 'start': xstart,
+//                 'end': xend,
+//                 'content': content,
+//                 'group': this.getGroupName(group)
+//             }, preventRender);
+//             params.itemIndex = (this.items.length - 1);
+//             this.selectItem(params.itemIndex);
 
-            this.applyAdd = true;
+//             this.applyAdd = true;
 
-            // fire an add event.
-            // Note that the change can be canceled from within an event listener if
-            // this listener calls the method cancelAdd().
-            this.trigger('add');
+//             // fire an add event.
+//             // Note that the change can be canceled from within an event listener if
+//             // this listener calls the method cancelAdd().
+//             this.trigger('add');
 
-            if (this.applyAdd) {
-                // render and select the item
-                this.render({animate: false});
-                this.selectItem(params.itemIndex);
-            }
-            else {
-                // undo an add
-                this.deleteItem(params.itemIndex);
-            }
-        }
-    }
+//             if (this.applyAdd) {
+//                 // render and select the item
+//                 this.render({animate: false});
+//                 this.selectItem(params.itemIndex);
+//             }
+//             else {
+//                 // undo an add
+//                 this.deleteItem(params.itemIndex);
+//             }
+//         }
+//     }
 
-    links.Timeline.preventDefault(event);
-};
+//     links.Timeline.preventDefault(event);
+// };
 
 
 /**

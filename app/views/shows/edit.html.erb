@@ -4,53 +4,10 @@
 <p><%= link_to "Your shows", shows_path %></p>
 <h2>Edit <%= @show.name %></h2>
 
+ <% @fireworks.each_with_index do |firework, i| %>
+   <input type="button" value="<%= firework.name %>"  onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
+<% end %>
+
 <div id="mytimeline" data-show-id='<%= @show.id %>'  ></div>
-
-
-<% @show.events.each do |event| %>
-
-<ol>
-  <li>Start : <%= event.start %></li>
-  <li>End : <%= event.end %></li>
-  <li>Content : <%= event.content %></li>
-  <li>Firework  : <%= event.firework ? event.firework.name  : "That firework was deleted. Choose another" %></li>
-  <li>Show ID  : <%= event.show_id %></li>
-  <li>Event ID  : <%= event.id %></li>
-
-</ol>
-<%= link_to 'remove', show_event_path(@show, event), :method => :delete %>
-<% end %>
-
-  
-
-<h3>Add an Event</h3>
-<%= form_for @event, url: show_events_path(@show) do |f| %>
-  <%= f.label :start %>
-  <%= f.text_field :start %>
-
-  <%= f.label :end, 'end time (optional)' %>
-  <%= f.text_field :end %>
-
-  <%= f.label :content, 'Name the thing' %>
-  <%= f.text_field :content %>
-
-    <% @fireworks.each_with_index do |firework, i| %>
-
-      <p>
-      <%= f.radio_button :firework_id, firework.id, checked: (i == 0) %> 
-      <%= f.label :firework_id, firework.name, value: firework.id %> 
-      </p> 
-    <% end %>
- 
-
-  <%= f.hidden_field :show_id, value: @show.id  %>
-
-  <%= f.submit 'Save Event' %>
-<% end %>
-
-
-<script>
-
-</script>
 
 
