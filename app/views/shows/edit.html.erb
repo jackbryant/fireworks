@@ -83,6 +83,9 @@
     </script>
   
     </head>
+    <%= javascript_tag do %>
+      window.track_url = '<%= j @show.track_url %>';
+    <% end %>
     <p><%= link_to "Your shows", shows_path %></p>
     <h3>Edit <%= @show.name %></h3>
 
@@ -96,21 +99,6 @@
     <div id="mytimeline"></div>
 
     <body itemscope itemtype="http://schema.org/WebApplication">
-        <form action="https://fireworktracks.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="key" value="abc.mp3">
-        <input type="hidden" name="AWSAccessKeyId" value="<%= ENV['AWS_ACCESS_KEY_ID'] %>"> 
-        <input type="hidden" name="acl" value="private"> 
-        <input type="hidden" name="success_action_redirect" value="http://example.com/upload_callback">
-        <input type="hidden" name="policy" value="<%= policy %>">
-        <input type="hidden" name="signature" value="<%= signature %>">
-        <input type="hidden" name="Content-Type" value="audio/mp3">
-        <!-- Include any additional input fields here -->
-
-        File to upload to S3: 
-        <input name="file" type="file"> 
-        <br> 
-        <input type="submit" value="Upload File to S3"> 
-      </form> 
 
         <div class="container">
             <div class="header">

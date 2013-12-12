@@ -37,7 +37,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Init
     wavesurfer.init(options);
     // Load audio from URL
-wavesurfer.load('/imperial.mp3');
+
+    // wavesurfer.load('/imperial.mp3')
+
+    if (track_url) { 
+       wavesurfer.load(track_url);
+    }
 
     // Start listening to drag'n'drop on document
     wavesurfer.bindDragNDrop('#drop');
