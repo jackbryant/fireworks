@@ -23,6 +23,11 @@ class ShowsController < ApplicationController
       @show = Show.find(params[:id])
       @event = Event.new
       @fireworks = Firework.all
+
+      if @fireworks.count == 0 then 
+        Firework.create(name: "Golden Blaster", duration: 100, delay: 123, colour: 3)
+        @fireworks = Firework.all if @show.save 
+      end
   end
 
 

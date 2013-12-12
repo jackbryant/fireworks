@@ -1,8 +1,13 @@
 Fireworks::Application.routes.draw do
 
-  get "welcome/index"
+ 
+  namespace :api, defaults: { format: :json } do
+    resources :timelines
+  end
+  root 'welcome#index'
 
-  root "welcome#index"
+  get '/data' => 'data#view'
+  get "welcome/index"
 
   resources :shows do
     resources :events
@@ -11,6 +16,8 @@ Fireworks::Application.routes.draw do
   resources :boards
   resources :fireworks
   resources :tracks
+
+ 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

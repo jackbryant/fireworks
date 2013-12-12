@@ -1,5 +1,7 @@
 class BoardsController < ApplicationController
   def index
+    WebsocketRails[''].trigger :board_present
+    render nothing: true
   end
 
   def create
@@ -15,7 +17,6 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-
     # raise params.inspect
     @board = Board.find(params[:id])
     if @board.destroy 
@@ -24,6 +25,10 @@ class BoardsController < ApplicationController
       else
         raise "something the fuck went wrong in the Board Controller (destroy)"
     end
+  end
+
+  def board_status
+    raise "whoop"
   end
 
 

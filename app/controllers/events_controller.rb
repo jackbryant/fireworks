@@ -4,6 +4,8 @@ class EventsController < ApplicationController
     @show = Show.find(params[:show_id])
 
     @event = @show.events.create(params[:event].permit(:start, :end, :content, :firework_id))
+    @event.show_id =
+
     redirect_to edit_show_path(@show)
   
   end

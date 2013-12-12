@@ -1,89 +1,27 @@
-
+<%= javascript_include_tag 'timeline' %>
+<%= javascript_include_tag 'timeline-data' %>
 
 <p><%= link_to "Your shows", shows_path %></p>
 <h2>Edit <%= @show.name %></h2>
+
+<div id="mytimeline" data-show-id='<%= @show.id %>'  ></div>
+
+
 <% @show.events.each do |event| %>
 
 <ol>
   <li>Start : <%= event.start %></li>
   <li>End : <%= event.end %></li>
   <li>Content : <%= event.content %></li>
-  <li>Firework  : <%= event.firework.name %></li>
+  <li>Firework  : <%= event.firework ? event.firework.name  : "That firework was deleted. Choose another" %></li>
+  <li>Show ID  : <%= event.show_id %></li>
+  <li>Event ID  : <%= event.id %></li>
+
 </ol>
 <%= link_to 'remove', show_event_path(@show, event), :method => :delete %>
 <% end %>
 
-
-
-
-    <p><%= link_to "Your shows", shows_path %></p>
-    <h3>Edit <%= @show.name %></h3>
-
-    <% @show.events.each do |event| %>
-    <ol>
-      <li>Start : <%= event.start %></li>
-      <li>End : <%= event.end %></li>
-      <li>Content : <%= event.content %></li>
-    </ol>
-    <% end %>
-    <div id="mytimeline"></div>
-
-    <body itemscope itemtype="http://schema.org/WebApplication">
-        <div class="container">
-            <div class="header">
-            </div>
-
-            <div id="demo">
-                <div id="waveform">
-                    <div class="progress progress-striped active" id="progress-bar">
-                        <div class="progress-bar progress-bar-info"></div>
-                    </div>
-
-                    <!-- Here be the waveform -->
-                </div>
-
-                <div class="controls">
-                    <button class="btn btn-primary" data-action="back">
-                        <i class="glyphicon glyphicon-step-backward"></i>
-                        Backward
-                    </button>
-
-                    <button class="btn btn-primary" data-action="play">
-                        <i class="glyphicon glyphicon-play"></i>
-                        Play
-                        /
-                        <i class="glyphicon glyphicon-pause"></i>
-                        Pause
-                    </button>
-
-                    <button class="btn btn-primary" data-action="forth">
-                        <i class="glyphicon glyphicon-step-forward"></i>
-                        Forward
-                    </button>
-
-                    <button class="btn btn-primary" data-action="toggle-mute">
-                        <i class="glyphicon glyphicon-volume-off"></i>
-                        Toggle Mute
-                    </button>
-
-                    <div class="mark-controls">
-                        <button class="btn btn-success" data-action="green-mark">
-                            <i class="glyphicon glyphicon-flag"></i>
-                            Set green mark
-                        </button>
-
-                        <button class="btn btn-danger" data-action="red-mark">
-                            <i class="glyphicon glyphicon-flag"></i>
-                            Set red mark
-                        </button>
-                    </div>
-                </div>
-
-                <p class="lead pull-center" id="drop">
-                    Drop a song here
-                </p>
-            </div>
-
+  
 
 <h3>Add an Event</h3>
 <%= form_for @event, url: show_events_path(@show) do |f| %>
@@ -109,5 +47,10 @@
 
   <%= f.submit 'Save Event' %>
 <% end %>
+
+
+<script>
+
+</script>
 
 

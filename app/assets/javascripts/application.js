@@ -11,7 +11,4 @@
 // about supported directives.
 //= require jquery
 //= require jquery_ujs
-//= require timeline
-//= require wavesurfer.min
-//= require main
 //= require_tree .

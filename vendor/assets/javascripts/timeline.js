@@ -390,7 +390,7 @@ links.Timeline.mapColumnIds = function (dataTable) {
         var id = dataTable.getColumnId(col) || dataTable.getColumnLabel(col);
         cols[id] = col;
         if (id == 'start' || id == 'end' || id == 'content' || id == 'group' ||
-            id == 'className' || id == 'editable' || id == 'type' || id =='databaseID' || id = 'customProps' ) {
+            id == 'className' || id == 'editable' || id == 'type' || id =='databaseID') {
             allUndefined = false;
         }
     }
@@ -444,9 +444,7 @@ links.Timeline.prototype.setData = function(data) {
                 'className': ((cols.className != undefined) ? data.getValue(row, cols.className) : undefined),
                 'editable':  ((cols.editable != undefined)  ? data.getValue(row, cols.editable)  : undefined),
                 'type':      ((cols.editable != undefined)  ? data.getValue(row, cols.type)      : undefined),
-                'databaseID':      ((cols.editable != undefined)  ? data.getValue(row, cols.myVar)      : undefined),
-                'customProps':      ((cols.editable != undefined)  ? data.getValue(row, cols.myVar)      : undefined)
-               
+                'databaseID':      ((cols.editable != undefined)  ? data.getValue(row, cols.myVar)      : undefined)
             }));
         }
     }

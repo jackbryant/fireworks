@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211165846) do
+ActiveRecord::Schema.define(version: 20131212155740) do
 
   create_table "boards", force: true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20131211165846) do
     t.datetime "updated_at"
     t.integer  "show_id"
     t.integer  "firework_id"
+    t.boolean  "editable"
   end
 
   create_table "fireworks", force: true do |t|

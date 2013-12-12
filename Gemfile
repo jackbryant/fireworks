@@ -32,6 +32,9 @@ gem 'paperclip'
 
 gem 'aws-sdk'
 
+gem 'websocket-rails'
+gem 'thin'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

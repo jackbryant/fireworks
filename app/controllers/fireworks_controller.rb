@@ -1,5 +1,5 @@
 class FireworksController < ApplicationController
-  in_place_edit_for :firework, :name
+  
 
   def index
     @firework = Firework.new
