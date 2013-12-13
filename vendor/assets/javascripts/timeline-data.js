@@ -47,7 +47,7 @@ $(document).ready(function() {
 function addFireworkToTimeline(fireworkId, fireworkName) {
             var range = timeline.getVisibleChartRange();
             var start = new Date((range.start.valueOf() + range.end.valueOf()) / 2);
-            var content = fireworkName
+            var content = "<a href='http://google.com'>link somewhere</a> " + fireworkName
 
             timeline.addItem({
                 'start': start,
@@ -62,7 +62,16 @@ function addFireworkToTimeline(fireworkId, fireworkName) {
             timeline.setSelection([{
                 'row': count-1
             }]);
-            onChangeOrCreate()
+
+            /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            Need to deal with the situation where a firework is 
+            added to the timeline and then is moved. 
+
+            This causes two entries to the database.
+            Maybe just updating the view after this might do the trick. */
+
+            onChangeOrCreate();
         }
 
 function rowOfSelectedItem() {
