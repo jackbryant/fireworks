@@ -1,6 +1,9 @@
-<<<<<<< HEAD
+
 <%= javascript_include_tag 'timeline' %>
 <%= javascript_include_tag 'timeline-data' %>
+<%= javascript_include_tag 'jquery-ui' %>
+<%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css' %>
+
 
 <p><%= link_to "Your shows", shows_path %></p>
 <h2>Edit <%= @show.name %></h2>
@@ -11,110 +14,17 @@
 
 <div id="mytimeline" data-show-id='<%= @show.id %>'  ></div>
 
-<%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css' %>
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>            
 
-<script>   
-  window.policy = '<%= policy %>'
-  window.signature = '<%= signature %>'
 
-  function drawVisualization(dataVal, duration) {
-
-    var data = [
-    {
-      'start': new Date(2010,0,1,0,1),
-      'content': 'Firework',
-      'customProps': { 'fired': false, 'num': 1, 'colour': 100 }
-    },
-    {
-      'start': new Date(2010,0,1,0,1, 10),
-      'content': 'Firework 2',
-      'customProps': { 'fired': false, 'num': 2, 'colour': 800 }
-    }
-    ]
-
-    var options = {
-      'width':  '100%',
-      'height': '200px',
-      'editable': true, 
-      'style': 'box',
-      "min": new Date(2010, 0, 1 , 0, 0,0,0),
-      "max": new Date(2010, 0, 1 , 0, 0, 0, duration.duration),
-      "zoomMin": 10,
-      "zoomMax": 1000 * 60 * 60,
-      "zoomable": true,
-      "showMajorLabels": false,
-      "animateZoom": true,
-      "showCustomTime": true
-    };
-
-    timeline = new links.Timeline(document.getElementById('mytimeline'));
-    links.events.addListener(timeline, 'ready', function() {
-      allFireworks = timeline.getData();
-      timeline.setVisibleChartRange(new Date(2010, 0, 1 , 0, 0,0,0), new Date(2010, 0, 1 , 0, 0, 0, duration.duration));
-    });
-
-    timeline.draw(data, options);
-  }
-
-  var timeline;
-
-  $(function() {
-
-    wavesurfer.on('ready', function () {
-      wavesurfer.play();
-      var duration = wavesurfer.backend.getDuration();
-      drawVisualization([], {duration: duration * 1000});
-        
-      wavesurfer.backend.on('audioprocess', function(progress) {
-        var secs = Math.floor(progress)
-        var ms = (progress - secs) * 1000
-        var date = new Date(2010, 0, 1, 0, 0, secs, ms);
-        timeline.setCustomTime(date);
-      });
-
-      links.events.addListener(timeline, 'timechange', function (time) {
-        var timeline_minutes_in_msecs = time.time.getMinutes() * 60 * 1000
-        var timeline_seconds_in_msecs = time.time.getSeconds() * 1000
-        var timeline_milliseconds_in_msecs = time.time.getMilliseconds()
-        var timeline_total_time_in_msecs = timeline_minutes_in_msecs + timeline_seconds_in_msecs + timeline_milliseconds_in_msecs
-        
-        wavesurfer.seekTo(timeline_total_time_in_msecs / (wavesurfer.backend.getDuration() * 1000));
-      });
-    });
-
-  });
-
-</script>
-
-<p><%= link_to "Your shows", shows_path %></p>
-<h2>Edit <%= @show.name %></h2>
-<% @show.events.each do |event| %>
-  <ol>
-    <li>Start : <%= event.start %></li>
-    <li>End : <%= event.end %></li>
-    <li>Content : <%= event.content %></li>
-    <li>Firework  : <%= event.firework.name %></li>
-  </ol>
-  <%= link_to 'remove', show_event_path(@show, event), :method => :delete %>
+<%= javascript_tag do %>
+    window.track_url = '<%= j @show.track_url %>';
 <% end %>
 
-  <%= javascript_tag do %>
-    window.track_url = '<%= j @show.track_url %>';
-  <% end %>
-
-  <p><%= link_to "Your shows", shows_path %></p>
-  <h3>Edit <%= @show.name %></h3>
-
-  <% @show.events.each do |event| %>
-  <ol>
-    <li>Start : <%= event.start %></li>
-    <li>End : <%= event.end %></li>
-    <li>Content : <%= event.content %></li>
-  </ol>
-  <% end %>
+<script>
+    window.policy = '<%= policy %>'
+    window.signature = '<%= signature %>'
+</script>
     
 <!--   <div id="mytimeline"></div> -->
     <div class="container">
@@ -172,28 +82,4 @@
       </div>
     </div>
 
-<h3>Add an Event</h3>
-
-<%= form_for @event, url: show_events_path(@show) do |f| %>
-  <%= f.label :start %>
-  <%= f.text_field :start %>
-
-  <%= f.label :end, 'end time (optional)' %>
-  <%= f.text_field :end %>
-
-  <%= f.label :content, 'Name the thing' %>
-  <%= f.text_field :content %>
-
-    <% @fireworks.each_with_index do |firework, i| %>
-
-      <p>
-        <%= f.radio_button :firework_id, firework.id, checked: (i == 0) %> 
-        <%= f.label :firework_id, firework.name, value: firework.id %> 
-      </p> 
-    <% end %>
-
-  <%= f.hidden_field :show_id, value: @show.id  %>
-  <%= f.submit 'Save Event' %>
-<% end %>
->>>>>>> jack
 

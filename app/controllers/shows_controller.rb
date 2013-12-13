@@ -19,7 +19,7 @@ class ShowsController < ApplicationController
   end
 
   def update
-    raise params
+    # raise params
   end
 
   def edit

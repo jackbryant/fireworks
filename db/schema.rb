@@ -44,10 +44,6 @@ ActiveRecord::Schema.define(version: 20131212155740) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "track_file_name"
-    t.string   "track_content_type"
-    t.integer  "track_file_size"
-    t.datetime "track_updated_at"
     t.string   "track_url"
   end
 

@@ -38,7 +38,7 @@ $ ->
         $.ajax
           type: "POST",
           url: "/tracks",
-          data: { track_url: "https://s3.amazonaws.com/fireworktracks/tracks/" + file.name.replace(/\s+/g, "")},
+          data: { track_url: "https://s3.amazonaws.com/fireworktracks/tracks/" + file.name.replace(/\s+/g, ""), show_id: getCurrentShowID() },
           success: (status) ->
             console.log("Successs! FUCKING YEAH")
 

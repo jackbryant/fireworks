@@ -12,10 +12,37 @@ var baseApiUrl = 'http://0.0.0.0:3000/api/timelines/'
 
 // Called whent the page is ready
 $(document).ready(function() {
-    
+    //  gernerate policy and signiture for S3 upload.
+    // In app/helpers/tracks_helper.rb
+    // window.policy = '<%= policy %>'
+    // window.signature = '<%= signature %>'
+
+
+  
+
     // get data from the API to fill in the timeline
     // this calls drawVisualization() when it's done.
-    getNewData();
+    timelineData = getNewData();
+
+   
+
+    //draw the timeline
+    //  drawVisualization( timelineData );
+
+      configureStuff(timelineData)
+
+      //listeners for timeline evernts
+      links.events.addListener(timeline, 'select', onSelect );
+      links.events.addListener(timeline, 'delete', onDelete );
+      links.events.addListener(timeline, 'change', onChangeOrCreate );
+      links.events.addListener(timeline, 'add', onChangeOrCreate );
+
+      links.events.addListener(timeline, 'ready', function() {
+      allFireworks = timeline.getData();
+      timeline.setVisibleChartRange(new Date(2010, 0, 1 , 0, 0,0,0), new Date(2010, 0, 1 , 0, 0, 0, duration.duration));
+    });
+  
+
 
     //event handlers
     
@@ -44,10 +71,38 @@ $(document).ready(function() {
    
 });
 
+
+
+function configureStuff(timelineData){
+  wavesurfer.on('ready', function () {
+      // wavesurfer.play();
+      var duration = wavesurfer.backend.getDuration();
+     
+      drawVisualization(timelineData, {duration: duration * 1000});
+        
+      wavesurfer.backend.on('audioprocess', function(progress) {
+        var secs = Math.floor(progress)
+        var ms = (progress - secs) * 1000
+        var date = new Date(2010, 0, 1, 0, 0, secs, ms);
+        timeline.setCustomTime(date);
+      });
+
+      links.events.addListener(timeline, 'timechange', function (time) {
+        var timeline_minutes_in_msecs = time.time.getMinutes() * 60 * 1000
+        var timeline_seconds_in_msecs = time.time.getSeconds() * 1000
+        var timeline_milliseconds_in_msecs = time.time.getMilliseconds()
+        var timeline_total_time_in_msecs = timeline_minutes_in_msecs + timeline_seconds_in_msecs + timeline_milliseconds_in_msecs
+        
+        wavesurfer.seekTo(timeline_total_time_in_msecs / (wavesurfer.backend.getDuration() * 1000));
+      });
+    });
+}
+
 function addFireworkToTimeline(fireworkId, fireworkName) {
             var range = timeline.getVisibleChartRange();
             var start = new Date((range.start.valueOf() + range.end.valueOf()) / 2);
-            var content = "<a href='http://google.com'>link somewhere</a> " + fireworkName
+            var content = fireworkName
+            // var content = "<a href='http://google.com'>link somewhere</a> " + fireworkName
 
             timeline.addItem({
                 'start': start,
@@ -174,16 +229,7 @@ function deleteRecord(api_url) {
       timelineData.push 
 
       
-      //draw the timeline
-      drawVisualization( timelineData );
-
-      //listeners for timeline evernts
-      links.events.addListener(timeline, 'select', onSelect );
-      links.events.addListener(timeline, 'delete', onDelete );
-      links.events.addListener(timeline, 'change', onChangeOrCreate );
-      links.events.addListener(timeline, 'add', onChangeOrCreate );
-
-      // timeline.setCurrentTime()
+      return timelineData;
     }        
   });
 };
@@ -210,24 +256,26 @@ function formatApiDataForTimeline(jsonString) {
 
 
 // Called when the Visualization API is loaded.
-function drawVisualization(dataVal) {
+function drawVisualization(dataVal, duration) {
     // Create a JSON data table
 
     data = dataVal;
    
     // specify options
-    var options = {
-        'width':  '100%',
-        'height': '300px',
-        'editable': true,   // enable dragging and editing events
-        'style': 'box',
-        'snapEvents' : false,
-        // 'min': new Date(2010, 0, 1 , 0, 0,0,0),
-        // 'max': new Date(2010, 0, 1 , 0, 30,0,0),
-         // 'zoomMin': 1000 * 60 * 60 * 24, // set zoom min at 1 hour
-         // 'zoomMax': 1000 * 60 * 60 * 24,  // set zoom max at 1 hour
-        'showMajorLabels': true,
-        'showCustomTime': false
+  var options = {
+      'width':  '100%',
+      'height': '200px',
+      'editable': true, 
+      'style': 'box',
+      // "min": new Date(2010, 0, 1 , 0, 0,0,0),
+      // "max": new Date(2010, 0, 1 , 0, 0, 0, duration.duration),
+      // "zoomMin": 10,
+      // "zoomMax": 1000 * 60 * 60,
+      "zoomable": true,
+      "showMajorLabels": false,
+      "animateZoom": true,
+      "showCustomTime": true,
+      'snapEvents' : false
     };
 
     // Instantiate our timeline object.
