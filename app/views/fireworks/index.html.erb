@@ -15,7 +15,9 @@
     <ul>
       <li data-firework-id='<%= firework.id %>' >Name : <%= firework.name %>
       <%= link_to 'edit', edit_firework_path(firework) %>
-       <%= link_to 'remove', firework_path(firework), :method => :delete %>
+       
+
+       <%= link_to 'remove', firework_path(firework), :method => :delete unless @fireworks.count == 1 %>
     
       </li>
       <li>Delay : <%= firework.delay %></li>

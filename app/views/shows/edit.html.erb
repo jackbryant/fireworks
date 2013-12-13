@@ -6,16 +6,17 @@
 
 
 <p><%= link_to "Your shows", shows_path %></p>
-<h2>Edit <%= @show.name %></h2>
+<h2>Edit <%= @show.name %> Show ID : <%= @show.id %></h2>
+
+<div id="displayShite"></div>
+ <p><input type="button" value="display shite" onclick="displayShite();"></p>
+
 
  <% @fireworks.each_with_index do |firework, i| %>
    <input type="button" value="<%= firework.name %>"  onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
 <% end %>
 
 <div id="mytimeline" data-show-id='<%= @show.id %>'  ></div>
-
-
-
 
 <%= javascript_tag do %>
     window.track_url = '<%= j @show.track_url %>';

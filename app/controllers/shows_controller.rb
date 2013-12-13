@@ -2,9 +2,15 @@ class ShowsController < ApplicationController
   def index
     @show = Show.new
     @shows = Show.all
-
     @board = Board.new
     @boards = Board.all
+
+    # Ensure that we have at least one firework
+    @fireworks =  Firework.all 
+    if @fireworks.count == 0
+      Firework.create(name: "Golden Blaster", duration: 100, delay: 123, colour: 3, cant_remove:true )
+    end
+    
   end
 
   def create
@@ -23,16 +29,9 @@ class ShowsController < ApplicationController
   end
 
   def edit
-
       @show = Show.find(params[:id])
       @event = Event.new
       @fireworks = Firework.all
-
-      if @fireworks.count == 0 then 
-        Firework.create(name: "Golden Blaster", duration: 100, delay: 123, colour: 3)
-        @fireworks = Firework.all if @show.save 
-      end
-
   end
 
 
