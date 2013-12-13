@@ -3062,7 +3062,7 @@ links.Timeline.prototype.onDblClick = function (event) {
             }
         }
     }
-    displayShite()
+  
     links.Timeline.preventDefault(event);
 };
 

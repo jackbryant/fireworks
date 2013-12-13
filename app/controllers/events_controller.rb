@@ -2,7 +2,6 @@ class EventsController < ApplicationController
 
   def create
     @show = Show.find(params[:show_id])
-
     @event = @show.events.create(params[:event].permit(:start, :end, :content, :firework_id))
     @event.show_id =
 

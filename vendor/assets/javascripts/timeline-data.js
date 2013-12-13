@@ -6,7 +6,10 @@ var baseApiUrl = 'http://0.0.0.0:3000/api/timelines/'
 
 var debug = true
 
-// Uncoment this for deployment
+/*  Uncoment this for deployment
+    It will re-render the timeline if you resize the window.
+*/
+
 // $(window).resize(function () { 
 //     timeline.render
 // });
@@ -15,17 +18,14 @@ var debug = true
 // Called whent the page is ready
 $(document).ready(function() {
 
-    // get data from the API to fill in the timeline
-    // this calls drawVisualization() when it's done.
-    getNewData();
-  
-    //event handlers
-    
-    $("#doStuff").click(function() {
-      timeline.setVisibleChartRangeNow();
-      // console.log(timeline.getVisibleChartRange())
-    });
+    // Get data from the API to fill in the timeline.
+    // getNewData() calles configureWaveSurfer() and then drawVisualization()
+    // when it has completed/
 
+    getNewData();
+
+
+    // detect key presses.
     $(document).keypress(function(keyPress) {
       var code = keyPress.keyCode || keyPress.which;
       if (code == 8) { 
@@ -35,12 +35,8 @@ $(document).ready(function() {
         if (item != undefined) {
           var objectToDelete = timeline.getData();
           var objectToDeleteID = objectToDelete[item]['databaseID']
-
           onDelete(objectToDeleteID)
-
-          // do the timeline delete for the currently selected item
-          var index = indexOfSelectedObject();
-          timeline.deleteItem(index);
+          timeline.deleteItem(item);
         }
       }; 
     });
@@ -48,11 +44,11 @@ $(document).ready(function() {
 });
 
 
-
-function configureStuff(timelineData){ 
+function configureWaveSurfer(timelineData){ 
  
   wavesurfer.on('ready', function () {
       // wavesurfer.play();
+
       var duration = wavesurfer.backend.getDuration();
      
       drawVisualization(timelineData, {duration: duration * 1000});
@@ -75,11 +71,8 @@ function configureStuff(timelineData){
     });
 }
 
-
-
 function rowOfSelectedItem() {
    var timelineObject = timeline.getSelection();
-
    if (timelineObject.length) {
     if (timelineObject[0].row != undefined) {
       var row = timelineObject[0].row;  
@@ -88,71 +81,52 @@ function rowOfSelectedItem() {
   }
 }
 
-function indexOfSelectedObject() {
-  // returns the index of the selected item or nothing.
-  for (var i = 0; i<timeline.items.length; i++) { 
-   if (timeline.isSelected(i)) {
-    return i
-   }  
-  };
-}
+function displayShit(what) {
+    $('#displayStuff').html('<p>'+ JSON.stringify(what, null, 4) + '</p>');
+};
 
 function onSelect() {
-  displayShite()
-    var item = rowOfSelectedItem()
-    if (item != undefined) { console.log("item " + item + " selected") }   
+    var item = rowOfSelectedItem();
+    if (item != undefined) { console.log("item " + item + " selected") } 
+    
 }
+
 
 // function to delete a firework from the timeline
 function onDelete(deleteID) {
-
   var item = rowOfSelectedItem();
   var itemToDelete = timeline.getData();
   var itemToDeleteID = deleteID || itemToDelete[item]['databaseID']
-  deleteRecord(baseApiUrl + itemToDeleteID );
-  
+  deleteRecord(baseApiUrl + itemToDeleteID ); 
 }
 
 function addFireworkToTimeline(fireworkId, fireworkName) {
     var range = timeline.getVisibleChartRange();
     var start = new Date((range.start.valueOf() + range.end.valueOf()) / 2);
 
-
     var content = fireworkName
-    // var content = "<a href='http://google.com'>link somewhere</a> " + fireworkName
 
     timeline.addItem({
         'start': start,
-        'content': content,
+        'content': fireworkName,
         'editable' :true
     });
     var count = timeline.items.length;    
     var row = count-1
    
+   //set the selected state of the item we created.
     timeline.setSelection([{
         'row': row
     }]);
 
+    // make sure the add gets saved to the DB
     onChangeOrCreate();
 }
 
-function displayShite() {
-  // var itemRow = rowOfSelectedItem();
-  // var items = timeline.getData();
-  // var item = items[itemRow]
-
-
-  // $("#displayShite").html(
-  //   '<p>selectedItemRow :' + JSON.stringify(itemRow, null, 4)  + '</p>'
-  //   + '<p>item :' + JSON.stringify(item, null, 4) + '</p>'
-  //   + '<p>All Items :' + JSON.stringify(items, null, 4) + '</p>'
-  //   + '<p>Items count :' + items.length + '</p>'
-    
-  //   )
-}
 
 function onChangeOrCreate() { 
-  displayShite()
+
+
   var item = rowOfSelectedItem();
   var itemToUpdate = timeline.getData();
   var itemToUpdateData = itemToUpdate[item]
@@ -161,7 +135,7 @@ function onChangeOrCreate() {
   
   // this needs to be the real firework.
   itemToUpdateData['firework_id'] = 5
-  itemToUpdateData['firework_id'] = 5
+
   saveRecord(baseApiUrl, itemToUpdateData ); 
 }
 
@@ -170,24 +144,21 @@ function getCurrentShowID(){
 }
 
 function saveRecord(api_url, record) {
-  // alert("save record called")
-  displayShite()
-  console.log("-------------------------------------------------")
-  console.log(record)
-  console.log("-------------------------------------------------")
+  // Javascript was being clever and trying to convert the date string
+  // however it didn't include the milliseconds. 
+  // This converts it to a string, which is good enough. 
+  record.start = JSON.stringify(record.start, null, 4).replace(/"/g, '')
+
   $.ajax({
         url: api_url ,
         type: "post",
         data:  record,
         success: function(response){
-          // alert("database save")
-          if (debug) {console.log("successful API POST")};
-
-
-           record['id'] = response.id
-           record['database_id'] = response.id
-
-
+          if (debug) {console.log("successful API POST")};   
+         
+          // set the id and database_id of our created object. 
+          if (record['id'] == undefined) { record['id'] = response.id }
+          if (record['database_id']) {record['database_id'] = response.id}
         },
         error:function(){
            if (debug) {console.log("failed API POST")};
@@ -197,7 +168,7 @@ function saveRecord(api_url, record) {
 
 
 function deleteRecord(api_url) {
-  displayShite()
+  
   $.ajax({
         url: api_url ,
         type: "delete",
@@ -215,7 +186,6 @@ function deleteRecord(api_url) {
   $.ajax({
     type: "GET",
     url: baseApiUrl+getCurrentShowID(),
-    // url: 'http://0.0.0.0:3000/data',
     dataType: "json",
     success: function(apiData, status){
       if (debug) {console.log("successful API GET");};
@@ -227,7 +197,7 @@ function deleteRecord(api_url) {
       var timelineData = formatApiDataForTimeline(apiData)
       timelineData.push 
 
-      configureStuff(timelineData) ;
+      configureWaveSurfer(timelineData) ;
     }        
   });
 };
@@ -236,11 +206,11 @@ function deleteRecord(api_url) {
 
 function formatApiDataForTimeline(jsonString) {
    // loop through the JSON string and convert 'start' and 'end' 
+   // also add in databaseID
    var data = jsonString
       for (var key in data) {
         if (data.hasOwnProperty(key)) {
           data[key]["start"] = new Date( data[key]["start"] );
-          
           
           if (data[key]["end"]) {
           data[key]["end"] = new Date ( data[key]["end"] );
@@ -255,7 +225,7 @@ function formatApiDataForTimeline(jsonString) {
 
 // Called when the Visualization API is loaded.
 function drawVisualization(dataVal, duration) {
-  console.log(duration.duration)
+
   // specify options
   var options = {
       'width':  '100%',
@@ -272,8 +242,8 @@ function drawVisualization(dataVal, duration) {
       "showMajorLabels": true,
       "animateZoom": true,
       "showCustomTime": true,
-      'snapEvents' : true,
-      'showButtonNew' : true
+      'snapEvents' : false,
+      'showButtonNew' : false
     };
 
     // Instantiate our timeline object.

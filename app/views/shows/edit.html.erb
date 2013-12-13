@@ -7,10 +7,7 @@
 
 <p><%= link_to "Your shows", shows_path %></p>
 <h2>Edit <%= @show.name %> Show ID : <%= @show.id %></h2>
-
-<div id="displayShite"></div>
- <p><input type="button" value="display shite" onclick="displayShite();"></p>
-
+<div id='displayStuff'>Debug placeholder</div>
 
  <% @fireworks.each_with_index do |firework, i| %>
    <input type="button" value="<%= firework.name %>"  onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
