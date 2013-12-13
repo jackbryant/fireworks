@@ -316,7 +316,6 @@ var WaveSurfer = {
             if (file) {
                 my.empty();
                 reader.readAsArrayBuffer(file);
-                // PUT UPLOAD CODE IN HERE
             } else {
                 my.fireEvent('error', 'Not a file');
             }

@@ -27,21 +27,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var progressDiv = document.querySelector('#progress-bar');
     var progressBar = progressDiv.querySelector('.progress-bar');
     wavesurfer.on('loading', function (percent, xhr) {
-        progressDiv.style.display = 'block';
-        progressBar.style.width = percent + '%';
+        $("#progress_bar_download").progressbar()
+        $('#progress_bar_download .ui-progressbar-value').css('background', 'orange')
+        $('#progress_bar_download').progressbar("option", "value", percent)
     });
     wavesurfer.on('ready', function () {
-        progressDiv.style.display = 'none';
+        $('#progress_bar_download .ui-progressbar-value').css('background', 'green')
     });
 
     // Init
     wavesurfer.init(options);
     // Load audio from URL
 
-    // wavesurfer.load('/imperial.mp3')
-
     if (track_url) { 
-       wavesurfer.load(track_url);
+      wavesurfer.load(track_url);
     }
 
     // Start listening to drag'n'drop on document
