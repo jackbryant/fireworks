@@ -13,7 +13,9 @@
    <input type="button" value="<%= firework.name %>"  onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
 <% end %>
 
-<div id="mytimeline" data-show-id='<%= @show.id %>'  ></div>
+
+<div id="mytimeline" data-show-id='<%= @show.id %>'></div>
+
 
 <%= javascript_tag do %>
     window.track_url = '<%= j @show.track_url %>';
@@ -24,7 +26,6 @@
     window.signature = '<%= signature %>'
 </script>
     
-<!--   <div id="mytimeline"></div> -->
     <div class="container">
       <div class="header"></div>
 
@@ -76,7 +77,9 @@
         <p class="lead pull-center" id="drop">
           Drop a song here
         </p>
-        <div id="progress_bar"> </div>
+        <div id="progress_bar_download"> </div>
+        <div id="progress_bar_upload"> </div>
+        <div id="downloading"> </div>
       </div>
     </div>
 
