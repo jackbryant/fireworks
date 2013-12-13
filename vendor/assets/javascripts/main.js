@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     wavesurfer.on('ready', function () {
         $('#progress_bar_download .ui-progressbar-value').css('background', 'green')
+        var controls = $('.controls')
+        controls.css('visibility', 'visible')
+
     });
 
     // Init

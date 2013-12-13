@@ -19,8 +19,8 @@ $ ->
     
   $('#drop')[0].addEventListener 'drop', (e) ->
     file = e.dataTransfer.files[0]
-    wave = $('.controls')
-    wave.css('visibility', 'visible')
+    controls = $('.controls')
+    controls.css('visibility', 'visible')
 
     if file
       $("#progress_bar_upload").progressbar()
