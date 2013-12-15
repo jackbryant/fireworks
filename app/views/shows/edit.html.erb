@@ -1,7 +1,6 @@
 
 <%= javascript_include_tag 'timeline' %>
 <%= javascript_include_tag 'timeline-data' %>
-<%= javascript_include_tag 'jquery-ui' %>
 <%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css' %>
 
 
@@ -13,74 +12,76 @@
    <input type="button" value="<%= firework.name %>"  onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
 <% end %>
 
-
-<div id="mytimeline" data-show-id='<%= @show.id %>'></div>
-
-
 <%= javascript_tag do %>
-    window.track_url = '<%= j @show.track_url %>';
+  window.track_url = '<%= j @show.track_url %>';
 <% end %>
 
 <script>
-    window.policy = '<%= policy %>'
-    window.signature = '<%= signature %>'
+  window.policy = '<%= policy %>'
+  window.signature = '<%= signature %>'
 </script>
+
+<aside id="library">
+  <%= image_tag("nightsky.png", id: "nightsky") %>
+  <%= image_tag("big-glow.png", id: "big-glow") %>
+  <%= image_tag("small-glow.png", id: "small-glow") %>
+</aside>
+
+<div id="mytimeline" data-show-id='<%= @show.id %>'></div>
     
-    <div class="container">
-      <div class="header"></div>
+<div class="container">
+  <div class="header"></div>
 
-      <div id="demo">
-        <div id="waveform">
-          <div class="progress progress-striped active" id="progress-bar">
-            <div class="progress-bar progress-bar-info"></div>
-          </div>
-          <!-- Here be the waveform -->
-        </div>
+  <div id="demo">
+    <div id="waveform">
+      <div class="progress progress-striped active" id="progress-bar">
+        <div class="progress-bar progress-bar-info"></div>
+      </div>
+      <!-- Here be the waveform -->
+    </div>
 
-        <div class="controls">
-          <button class="btn btn-primary" data-action="back">
-            <i class="glyphicon glyphicon-step-backward"></i>
-            Backward
-          </button>
+    <div class="controls">
+      <button class="btn btn-primary" data-action="back">
+        <i class="glyphicon glyphicon-step-backward"></i>
+        Backward
+      </button>
 
-          <button class="btn btn-primary" data-action="play">
-            <i class="glyphicon glyphicon-play"></i>
-            Play
-            /
-            <i class="glyphicon glyphicon-pause"></i>
-            Pause
-          </button>
+      <button class="btn btn-primary" data-action="play">
+        <i class="glyphicon glyphicon-play"></i>
+        Play
+        /
+        <i class="glyphicon glyphicon-pause"></i>
+        Pause
+      </button>
 
-          <button class="btn btn-primary" data-action="forth">
-            <i class="glyphicon glyphicon-step-forward"></i>
-            Forward
-          </button>
+      <button class="btn btn-primary" data-action="forth">
+        <i class="glyphicon glyphicon-step-forward"></i>
+        Forward
+      </button>
 
-          <button class="btn btn-primary" data-action="toggle-mute">
-            <i class="glyphicon glyphicon-volume-off"></i>
-            Toggle Mute
-          </button>
+      <button class="btn btn-primary" data-action="toggle-mute">
+        <i class="glyphicon glyphicon-volume-off"></i>
+        Toggle Mute
+      </button>
 
-          <div class="mark-controls">
-            <button class="btn btn-success" data-action="green-mark">
-              <i class="glyphicon glyphicon-flag"></i>
-              Set green mark
-            </button>
+      <div class="mark-controls">
+        <button class="btn btn-success" data-action="green-mark">
+          <i class="glyphicon glyphicon-flag"></i>
+          Set green mark
+        </button>
 
-            <button class="btn btn-danger" data-action="red-mark">
-              <i class="glyphicon glyphicon-flag"></i>
-              Set red mark
-            </button>
-          </div>
-        </div>
-
-        <p class="lead pull-center" id="drop">
-          Drop a song here
-        </p>
-        <div id="progress_bar_download"> </div>
-        <div id="progress_bar_upload"> </div>
-        <div id="downloading"> </div>
+        <button class="btn btn-danger" data-action="red-mark">
+          <i class="glyphicon glyphicon-flag"></i>
+          Set red mark
+        </button>
       </div>
     </div>
 
-
+    <p class="lead pull-center" id="drop">
+      Drop a song here
+    </p>
+    <div id="progress_bar_download"> </div>
+    <div id="progress_bar_upload"> </div>
+    <div id="downloading"> </div>
+  </div>
+</div>

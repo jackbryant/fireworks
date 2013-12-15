@@ -229,7 +229,7 @@ function drawVisualization(dataVal, duration) {
   // specify options
   var options = {
       'width':  '100%',
-      'height': '400px',
+      'height': '250px',
       'editable': true, 
       'style': 'box',
       'start' : new Date(2010, 0, 1 , 0, 0,0,0),

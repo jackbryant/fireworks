@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
         $('#progress_bar_download .ui-progressbar-value').css('background', 'green')
         var controls = $('.controls')
         controls.css('visibility', 'visible')
-
     });
 
     // Init

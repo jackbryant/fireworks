@@ -55,7 +55,7 @@ $ ->
           url: "/tracks",
           data: { track_url: "https://s3.amazonaws.com/fireworktracks/tracks/" + unique_file_name, show_id: getCurrentShowID() },
           success: (status) ->
-            console.log("Successs! FUCKING YEAH")
+            console.log("Successs!")
 
       xhr.send(fd)
 
