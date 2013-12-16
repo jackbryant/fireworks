@@ -43,6 +43,7 @@ var Fireworks = (function() {
 
     // create a canvas for the fireworks
     mainCanvas = document.createElement('canvas');
+    mainCanvas.id = "fireworks_visualiser";
     mainContext = mainCanvas.getContext('2d');
 
     // and another one for, like, an off screen buffer
@@ -58,13 +59,23 @@ var Fireworks = (function() {
 
     // add the canvas in
     $('body').prepend(mainCanvas);
-    // document.addEventListener('mousedown', createFirework, true);
+    document.addEventListener('mousedown', createFirework, true);
     // document.addEventListener('mousedown', logTimeToConsoleDown, true);
     // document.addEventListener('mouseup', logTimeToConsoleUp, true);
     // document.addEventListener('touchend', createFirework, true);
 
     // and now we set off
     update();
+  }
+
+  function logTimeToConsoleDown() {
+    var now = new Date();
+    console.log(now.getSeconds() + ":" + now.getMilliseconds());
+  }
+
+  function logTimeToConsoleUp() {
+    var now = new Date();
+    console.log(now.getSeconds() + ":" + now.getMilliseconds());
   }
 
   /**
@@ -96,10 +107,10 @@ var Fireworks = (function() {
 
       fireworkContext.fillStyle = "hsl(" + Math.round(c * 3.6) + ",100%,60%)";
       fireworkContext.fillRect(gridX, gridY, gridSize, gridSize);
-      // fireworkContext.drawImage(
-      //   Library.bigGlow,
-      //   gridX,
-      //   gridY);
+      fireworkContext.drawImage(
+        Library.bigGlow,
+        gridX,
+        gridY);
     }
   }
 
@@ -108,7 +119,7 @@ var Fireworks = (function() {
    * detected viewport size
    */
   function setMainCanvasDimensions() {
-    mainCanvas.width = viewportWidth * 0.5;
+    mainCanvas.width = viewportWidth * 0.8;
     mainCanvas.height = viewportHeight * 0.5;
   }
 
@@ -127,7 +138,7 @@ var Fireworks = (function() {
    */
   function clearContext() {
     mainContext.fillStyle = "rgba(0,0,0,0.2)";
-    mainContext.fillRect(0, 0, viewportWidth * 0.5, viewportHeight * 0.5);
+    mainContext.fillRect(0, 0, viewportWidth * 0.8, viewportHeight * 0.5);
   }
 
   /**
@@ -179,13 +190,13 @@ var Fireworks = (function() {
       new Particle(
         // position
         {
-          x: pos.x || viewportWidth * 0.25,
+          x: pos.x || viewportWidth * 0.4,
           y: pos.y || viewportHeight * 0.5 + 10
         },
 
         // target
         {
-          y: target.y || 120 
+          y: target.y || 150
         },
 
         // velocity
@@ -222,7 +233,7 @@ var Fireworks = (function() {
    */
   function onWindowResize() {
     viewportWidth = window.innerWidth;
-    viewportHeight = window.innerHeight;
+    viewportHeight = window.innerHeight * 1.5;
   }
 
   // declare an API
@@ -457,6 +468,5 @@ var FireworkExplosions = {
 
 // Go
 window.onload = function() {
-  alert('peanuts');
   Fireworks.initialize();
 };

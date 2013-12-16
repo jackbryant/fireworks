@@ -24,7 +24,6 @@ $(document).ready(function() {
 
     getNewData();
 
-
     // detect key presses.
     $(document).keypress(function(keyPress) {
       var code = keyPress.keyCode || keyPress.which;
@@ -48,16 +47,28 @@ function configureWaveSurfer(timelineData){
  
   wavesurfer.on('ready', function () {
       // wavesurfer.play();
-
+      firedFireworks = [];
       var duration = wavesurfer.backend.getDuration();
      
       drawVisualization(timelineData, {duration: duration * 1000});
-        
+      
+      allFireworks = timeline.getData();
+      $('body').append( "<div id='downloaded'></div>" );
+
       wavesurfer.backend.on('audioprocess', function(progress) {
         var secs = Math.floor(progress)
         var ms = (progress - secs) * 1000
         var date = new Date(2010, 0, 1, 0, 0, secs, ms);
         timeline.setCustomTime(date);
+        allFireworks.forEach(function(firework) {
+          if (date >= firework.start - (1.6 * 1000) && $.inArray(firework, firedFireworks) == -1) {
+            firedFireworks.push(firework);
+            Fireworks.createParticle(null, null, null, 800);
+          }
+          if (date <= firework.start - (1.6 * 1000)) {
+            firedFireworks.splice( $.inArray(firework, firedFireworks), 1 );
+          }
+        });
       });
 
       links.events.addListener(timeline, 'timechange', function (time) {
@@ -88,7 +99,6 @@ function displayShit(what) {
 function onSelect() {
     var item = rowOfSelectedItem();
     if (item != undefined) { console.log("item " + item + " selected") } 
-    
 }
 
 
@@ -136,7 +146,10 @@ function onChangeOrCreate() {
   // this needs to be the real firework.
   itemToUpdateData['firework_id'] = 5
 
-  saveRecord(baseApiUrl, itemToUpdateData ); 
+  allFireworks = timeline.getData();
+  console.log("I'm getting some data yo");
+
+  saveRecord(baseApiUrl, itemToUpdateData); 
 }
 
 function getCurrentShowID(){
@@ -259,10 +272,3 @@ function drawVisualization(dataVal, duration) {
     // Draw our timeline with the created data and options
     timeline.draw(dataVal, options);
 }
-
-
-
-
-
-
-
