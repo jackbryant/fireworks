@@ -20,7 +20,7 @@ describe Show do
 
 
   it "will return a list of events for a show" do
-    events = show.get_events_from_show 999
+    events = show.get_events_from_show 
     expect( events.count ).to eq 3
   end
 
@@ -41,7 +41,35 @@ describe Show do
   end
 
   it "creates a timing string" do
-    
+    relative_timings = show.get_relative_timings event_timings
+    relative_timings_without_delays = show.remove_delays relative_timings, delays
+    expect( show.create_firing_string relative_timings_without_delays  ).to eq "require 'whatever'\n# play the audio\nsleep 4950\npin(0) high\nsleep 1000\npin(1) high\nsleep 1900\npin(2) high\nsleep 2100\npin(3) high\n"
   end
+
+  it "will get an array of event delays" do
+
+    expect( show.get_event_delays).to eq [100, 0, 0]
+  end
+
+  it "will get an array of event timings" do
+    # show_id = 999
+    expect( show.get_event_timings ).to eq [6300, 7001, 9001]
+  end
+
+   it "creates an array of timing events and delays from the events" do
+
+   expect( show.construct_timings_file ).to eq "require 'whatever'\n# play the audio\nsleep 6200\npin(0) high\nsleep 701\npin(1) high\nsleep 2000\npin(2) high\n"
+   end
+
+  it "creates an array of timing events and delays from the events 2" do
+    FactoryGirl.create(:event, show_id: 100, start: '2010-01-01T00:00:05.763Z' , delay: 0)
+    FactoryGirl.create(:event, show_id: 100, start: '2010-01-01T00:00:03.004Z' , delay: 0)
+    FactoryGirl.create(:event, show_id: 100, start: '2010-01-01T00:00:08.242Z' , delay: 0 )  
+    new_show = FactoryGirl.create( :show, id: 100) 
+   expect( new_show.construct_timings_file ).to eq "require 'whatever'\n# play the audio\nsleep 3004\npin(0) high\nsleep 2759\npin(1) high\nsleep 2479\npin(2) high\n"
+  end
+
+
+
 end
 

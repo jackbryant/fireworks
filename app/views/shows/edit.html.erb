@@ -7,6 +7,11 @@
 
 <p><%= link_to "Your shows", shows_path %></p>
 <h2>Edit <%= @show.name %> Show ID : <%= @show.id %></h2>
+
+<%= link_to 'Download List', download_show_path(@show) %> </li>
+
+
+
 <div id='displayStuff'>Debug placeholder</div>
 
  <% @fireworks.each_with_index do |firework, i| %>

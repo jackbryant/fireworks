@@ -15,7 +15,7 @@ describe Event do
 
   it "can tell me the time in milliseconds an event occurs" do
     event = FactoryGirl.create(:event, content: "Green Sparkle", start: '2010-01-01T00:00:05.001Z' )
-    expect( event.get_event_time  ).to eq 5001  # 5 seconds
+    expect( event.get_start_time_from_base  ).to eq 5001  # 5 seconds
   end
 
 end
