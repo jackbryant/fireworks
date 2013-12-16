@@ -59,7 +59,7 @@ var Fireworks = (function() {
 
     // add the canvas in
     $('body').prepend(mainCanvas);
-    document.addEventListener('mousedown', createFirework, true);
+    // document.addEventListener('mousedown', createFirework, true);
     // document.addEventListener('mousedown', logTimeToConsoleDown, true);
     // document.addEventListener('mouseup', logTimeToConsoleUp, true);
     // document.addEventListener('touchend', createFirework, true);

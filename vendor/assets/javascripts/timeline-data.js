@@ -54,6 +54,7 @@ function configureWaveSurfer(timelineData){
       
       allFireworks = timeline.getData();
       $('body').append( "<div id='downloaded'></div>" );
+      window.fireworkCount = 0;
 
       wavesurfer.backend.on('audioprocess', function(progress) {
         var secs = Math.floor(progress)
@@ -62,10 +63,11 @@ function configureWaveSurfer(timelineData){
         timeline.setCustomTime(date);
         allFireworks.forEach(function(firework) {
           if (date >= firework.start - (1.6 * 1000) && $.inArray(firework, firedFireworks) == -1) {
+            console.log(getFireworkElementByID(firework.firework_id));
             firedFireworks.push(firework);
             Fireworks.createParticle(null, null, null, 800);
           }
-          if (date <= firework.start - (1.6 * 1000)) {
+          if (date < firework.start - (1.6 * 1000) && $.inArray(firework, firedFireworks) != -1) {
             firedFireworks.splice( $.inArray(firework, firedFireworks), 1 );
           }
         });
@@ -152,8 +154,12 @@ function onChangeOrCreate() {
   saveRecord(baseApiUrl, itemToUpdateData); 
 }
 
-function getCurrentShowID(){
+function getCurrentShowID() {
   return $( "#mytimeline" ).data( 'show-id' )
+}
+
+function getFireworkElementByID(id) {
+  return $("ul").find("[data-firework-id='" + id + "']");
 }
 
 function saveRecord(api_url, record) {
