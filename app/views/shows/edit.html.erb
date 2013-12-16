@@ -15,7 +15,7 @@
 <div id='displayStuff'>Debug placeholder</div>
 
  <% @fireworks.each_with_index do |firework, i| %>
-   <input type="button" value="<%= firework.name %>"  onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
+   <input type="button" value="<%= firework.name %>" data-firework-id="<%= firework.id  %>"  data-firework-colour="<%= firework.colour  %>" onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
 <% end %>
 
 
