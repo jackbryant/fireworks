@@ -162,6 +162,10 @@ function getFireworkElementByID(id) {
   return $("ul").find("[data-firework-id='" + id + "']");
 }
 
+// function getFireworkColour(){
+//   return $( "#mytimeline" ).data( 'show-id' )
+// }
+
 function saveRecord(api_url, record) {
   // Javascript was being clever and trying to convert the date string
   // however it didn't include the milliseconds. 

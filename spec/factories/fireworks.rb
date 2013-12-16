@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :firework do
     name "MyString"
     duration 1
-    delay 1
+    delay 0
     colour 1
   end
 end

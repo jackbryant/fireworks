@@ -3,6 +3,7 @@ Fireworks::Application.routes.draw do
  
   namespace :api, defaults: { format: :json } do
     resources :timelines
+
   end
   root 'welcome#index'
 
@@ -11,6 +12,8 @@ Fireworks::Application.routes.draw do
 
   resources :shows do
     resources :events
+    member {get "download"}
+
   end
   
   resources :boards

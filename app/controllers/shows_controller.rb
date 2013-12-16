@@ -45,6 +45,15 @@ class ShowsController < ApplicationController
     end
   end
 
+  def download
+  show = Show.find(params[:id])
+  send_data show.construct_timings_file,
+    :filename => "timings.rb",
+    :type => "text/plain"
+end
+
+
+
   def show_params
     params.require(:show).permit(:name)
   end
