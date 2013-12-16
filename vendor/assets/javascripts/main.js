@@ -4,7 +4,8 @@
 var wavesurfer = Object.create(WaveSurfer);
 
 // Init & load audio file
-document.addEventListener('DOMContentLoaded', function () {
+
+function wsLoad() {
     var options = {
         container     : document.querySelector('#waveform'),
         waveColor     : 'violet',
@@ -47,7 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Start listening to drag'n'drop on document
     wavesurfer.bindDragNDrop('#drop');
-});
+}
+
+document.addEventListener('DOMContentLoaded', wsLoad)
 
 // Play at once when ready
 // Won't work on iOS until you touch the page

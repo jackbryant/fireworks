@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :show do
     name "MyString"
+    track_url "MyURL"
   end
 end

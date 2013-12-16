@@ -52,6 +52,7 @@ function configureWaveSurfer(timelineData){
       var duration = wavesurfer.backend.getDuration();
      
       drawVisualization(timelineData, {duration: duration * 1000});
+      $("body").append('<div id="download_done"></div>')
         
       wavesurfer.backend.on('audioprocess', function(progress) {
         var secs = Math.floor(progress)

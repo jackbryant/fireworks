@@ -56,6 +56,21 @@ When /^(?:|I )follow "([^\"]*)"(?: within "([^\"]*)")?$/ do |link, selector|
   end
 end
 
+Given(/^I have created a show and added a track URL to "(.*?)"$/) do |name|
+  FactoryGirl.create(:show, id: 1, name: name, track_url: "https://s3.amazonaws.com/fireworktracks/tracks/short.mp3" )
+end
+
+Then(/^the controls should not be visible on the page$/) do
+  expect(page.evaluate_script("$('.controls').css('visibility');")).to eq 'hidden'
+end
+
+Given(/^I visit the shows page$/) do
+  visit '/shows'
+end
+
+Then(/^I should see a timeline with the show id of (\d+)$/) do |id|
+  expect(page.evaluate_script("$('#mytimeline').attr('data-show-id');")).to eq "1"
+end
 
 def path_to(page_name)
 
