@@ -33,6 +33,7 @@ gem 'aws-sdk'
 
 gem 'websocket-rails'
 gem 'thin'
+gem  'timecop'
 
 
 group :doc do

@@ -3,7 +3,9 @@ class EventsController < ApplicationController
   def create
     @show = Show.find(params[:show_id])
     @event = @show.events.create(params[:event].permit(:start, :end, :content, :firework_id))
-    @event.show_id =
+    @event.show_id = @show.id
+    firework = Firework.find(:firework_id)
+    @event.delay = firework.delay
 
     redirect_to edit_show_path(@show)
   

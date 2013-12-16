@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213121347) do
+ActiveRecord::Schema.define(version: 20131216114819) do
 
   create_table "boards", force: true do |t|
     t.string   "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20131213121347) do
     t.integer  "show_id"
     t.integer  "firework_id"
     t.boolean  "editable"
+    t.integer  "delay"
   end
 
   create_table "fireworks", force: true do |t|

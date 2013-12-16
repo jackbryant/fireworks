@@ -5,5 +5,7 @@ FactoryGirl.define do
     start "MyString"
     'end' "MyString"
     content "MyString"
+    show_id "999"
+    delay '0'
   end
 end
