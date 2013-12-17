@@ -29,12 +29,12 @@
 <section class="all_boards">
   <% @boards.each do |board| %>
   <ul data-board-id='<%= board.boardID %>'>
-    <li data-board-id='<%= board.boardID %>'><%= board.name %> - <%= board.boardID %>
+    <article data-board-id='<%= board.boardID %>'><%= board.name %> - <%= board.boardID %>
     <br>
     <%= link_to 'remove', board_path(board), :method => :delete %> 
     <br>
     <div class="status">Offline</div>
-    </li>  
+    </article>  
   </ul>
   <% end %>
 </section>
@@ -45,7 +45,7 @@
   <%= f.text_field :name %>
 
   <%= f.label :boardID, 'Board ID' %>
-  <%= f.text_field :boardID %>
+  <%= f.text_field :boardID, {:class => 'board_id_input'} %>
 
   <%= f.submit 'Save board' %>
 <% end %>
@@ -56,14 +56,21 @@
     
     var testing_channel = pusher.subscribe('testing_channel');
     var board_presence_channel = pusher.subscribe('presence-of-boards');
+    var board_connect_channel = pusher.subscribe('board_connect_channel');
     
-    // existingMembers.forEach( function(member) {
-    //   $('ul[data-board-id="' + member.info.mac + '"]').find("div.status").text("Online");
-    // })
+    // testing_channel.bind('new_message', function(data) {
+    //   $('.messages').append("<div class=\"message\">" + data.message + "</div>");
+    // });
 
-    testing_channel.bind('new_message', function(data) {
-      $('.messages').append("<div class=\"message\">" + data.message + "</div>");
-    });
+    board_connect_channel.bind('connection', function(data) {
+      var connected_board_ids = [];
+      $('article').each(function(index, article) {
+        connected_board_ids.push($(article).data('board-id'));
+      })
+      if($.inArray(data.message, connected_board_ids) == -1) {
+        $('.board_id_input').val(data.message);
+      }
+    })
     
     board_presence_channel.bind('pusher:subscription_succeeded', function(members) {
       members.each(function(member){
