@@ -13,6 +13,4 @@ html, body {
 
 canvas #fireworks_visualiser {
   -webkit-transform: translateZ(0);
-  /*height: 400px;*/
-  /*width: 80%;*/
 }

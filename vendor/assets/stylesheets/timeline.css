@@ -11,12 +11,6 @@ html, body {
   display: none;
 }
 
-
-/*canvas #fireworks_visualiser {
-  -webkit-transform: translateZ(0);
-  width: 80%;
-}*/
-
 /* Timeline CSS */
 
 div.timeline-frame {

@@ -46,7 +46,7 @@ $(document).ready(function() {
 function configureWaveSurfer(timelineData){ 
  
   wavesurfer.on('ready', function () {
-      // wavesurfer.play();
+
       firedFireworks = [];
       var duration = wavesurfer.backend.getDuration();
      
@@ -224,21 +224,21 @@ function deleteRecord(api_url) {
 
 
 function formatApiDataForTimeline(jsonString) {
-   // loop through the JSON string and convert 'start' and 'end' 
-   // also add in databaseID
-   var data = jsonString
-      for (var key in data) {
-        if (data.hasOwnProperty(key)) {
-          data[key]["start"] = new Date( data[key]["start"] );
-          
-          if (data[key]["end"]) {
-          data[key]["end"] = new Date ( data[key]["end"] );
-          }
-          data[key]["databaseID"] =  data[key]["id"] ;
-        }
+  // loop through the JSON string and convert 'start' and 'end' 
+  // also add in databaseID
+  var data = jsonString
+   for (var key in data) {
+     if (data.hasOwnProperty(key)) {
+       data[key]["start"] = new Date( data[key]["start"] );
+       
+      if (data[key]["end"]) {
+        data[key]["end"] = new Date ( data[key]["end"] );
       }
+      data[key]["databaseID"] =  data[key]["id"] ;
+    }
+  }
 
-      return jsonString
+  return jsonString
 };
 
 
