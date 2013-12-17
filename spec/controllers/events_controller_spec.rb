@@ -1,5 +1,5 @@
-require 'spec_helper'
+# require 'spec_helper'
 
-describe EventsController do
+# describe EventsController do
 
-end
+# end

@@ -1,5 +1,5 @@
-require 'spec_helper'
+# require 'spec_helper'
 
-describe FireworksController do
+# describe FireworksController do
 
-end
+# end

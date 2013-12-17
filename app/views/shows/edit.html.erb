@@ -6,10 +6,15 @@
 
 <p><%= link_to "Your shows", shows_path %></p>
 <h2>Edit <%= @show.name %> Show ID : <%= @show.id %></h2>
+
+<%= link_to 'Download List', download_show_path(@show) %> </li>
+
+
+
 <div id='displayStuff'>Debug placeholder</div>
 
  <% @fireworks.each_with_index do |firework, i| %>
-   <input type="button" value="<%= firework.name %>"  onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
+   <input type="button" value="<%= firework.name %>" data-firework-id="<%= firework.id  %>"  data-firework-colour="<%= firework.colour  %>" onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
 <% end %>
 
 <%= javascript_tag do %>
@@ -85,3 +90,4 @@
     <div id="downloading"> </div>
   </div>
 </div>
+<%= javascript_include_tag 'fireworks' %>

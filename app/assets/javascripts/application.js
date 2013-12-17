@@ -13,7 +13,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require requestanimframe
-//= require fireworks
 //= require wavesurfer.min
 //= require main
 //= require_tree .
