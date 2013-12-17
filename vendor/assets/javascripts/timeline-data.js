@@ -230,7 +230,7 @@ function drawVisualization(dataVal, duration) {
   // specify options
   var options = {
       'width':  '100%',
-      'height': '250px',
+      'height': '150px',
       'editable': true, 
       'style': 'box',
       'start' : new Date(2010, 0, 1 , 0, 0,0,0),
@@ -240,7 +240,7 @@ function drawVisualization(dataVal, duration) {
       "zoomMin": 10,
       "zoomMax": duration.duration,
       "zoomable": true,
-      "showMajorLabels": true,
+      "showMajorLabels": false,
       "animateZoom": true,
       "showCustomTime": true,
       'snapEvents' : false,
