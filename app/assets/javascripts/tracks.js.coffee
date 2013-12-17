@@ -14,13 +14,22 @@ $ ->
       percentComplete = (evt.loaded / evt.total)*100
       $('#progress_bar_upload').progressbar("option", "value", percentComplete)
       if percentComplete > 99.9
-        $('#progress_bar_upload .ui-progressbar-value').css('background', 'green')
+        $('#progress_bar_upload').css('visibility', 'hidden')
+        
+  $( "#change_song" ).click ->
+    change_song_button = $( "#change_song" )
+    change_song_button.css('visibility', 'hidden')
+    dragndrop = $('#drop')
+    dragndrop.css('visibility', 'visible')
 
-    
   $('#drop')[0].addEventListener 'drop', (e) ->
     file = e.dataTransfer.files[0]
     controls = $('.controls')
     controls.css('visibility', 'visible')
+    dragndrop = $('#drop')
+    dragndrop.css('visibility', 'hidden')
+    change_song_button = $( "#change_song" )
+    change_song_button.css('visibility', 'visible')
 
     if file
       $("#progress_bar_upload").progressbar()

@@ -1,7 +1,3 @@
-// Place all the styles related to the shows controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 /*!
  * jQuery UI Progressbar 1.10.3
  * http://jqueryui.com
@@ -17,6 +13,7 @@
   height: 2em;
   text-align: left;
   overflow: hidden;
+  padding: 5px;
   width: 50%;
   margin-left: auto;
   margin-right: auto;

@@ -250,7 +250,7 @@ function drawVisualization(dataVal, duration) {
   // specify options
   var options = {
       'width':  '100%',
-      'height': '150px',
+      'height': '140px',
       'editable': true, 
       'style': 'box',
       'start' : new Date(2010, 0, 1 , 0, 0,0,0),

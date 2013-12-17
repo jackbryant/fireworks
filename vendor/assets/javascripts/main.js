@@ -8,7 +8,7 @@ var wavesurfer = Object.create(WaveSurfer);
 function wsLoad() {
     var options = {
         container     : document.querySelector('#waveform'),
-        waveColor     : 'violet',
+        waveColor     : 'navy',
         progressColor : 'purple',
         loaderColor   : 'purple',
         cursorColor   : 'navy',
@@ -33,7 +33,7 @@ function wsLoad() {
         $('#progress_bar_download').progressbar("option", "value", percent)
     });
     wavesurfer.on('ready', function () {
-        $('#progress_bar_download .ui-progressbar-value').css('background', 'green')
+        $('#progress_bar_download').css('visibility', 'hidden')
         var controls = $('.controls')
         controls.css('visibility', 'visible')
     });
@@ -44,6 +44,8 @@ function wsLoad() {
 
     if (track_url) { 
       wavesurfer.load(track_url);
+      var dragndrop = $('#drop');
+      dragndrop.css('visibility', 'hidden');
     }
 
     // Start listening to drag'n'drop on document
@@ -67,20 +69,6 @@ wavesurfer.on('ready', function () {
             }
         },
 
-        'green-mark': function () {
-            wavesurfer.mark({
-                id: 'up',
-                color: 'rgba(0, 255, 0, 0.5)'
-            });
-        },
-
-        'red-mark': function () {
-            wavesurfer.mark({
-                id: 'down',
-                color: 'rgba(255, 0, 0, 0.5)'
-            });
-        },
-
         'back': function () {
             wavesurfer.skipBackward();
         },
@@ -88,10 +76,6 @@ wavesurfer.on('ready', function () {
         'forth': function () {
             wavesurfer.skipForward();
         },
-
-        'toggle-mute': function () {
-            wavesurfer.toggleMute();
-        }
     };
 
     document.addEventListener('keydown', function (e) {

@@ -4,18 +4,16 @@
 <%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css' %>
 
 
-<p><%= link_to "Your shows", shows_path %></p>
-<h2>Edit <%= @show.name %> Show ID : <%= @show.id %></h2>
+<p id="your_shows"><%= link_to "Your shows", shows_path %></p>
+<h2 id="edit_show_name">Edit <%= @show.name %> Show ID : <%= @show.id %></h2>
 
-<%= link_to 'Download List', download_show_path(@show) %> </li>
+<p id="download_list"> <%= link_to 'Download Show', download_show_path(@show) %> </li> </p>
 
-
-
-<div id='displayStuff'>Debug placeholder</div>
-
- <% @fireworks.each_with_index do |firework, i| %>
+<p id="fireworks_title">Fireworks</p>
+<div id="fireworks_list"><% @fireworks.each_with_index do |firework, i| %>
    <input type="button" value="<%= firework.name %>" data-firework-id="<%= firework.id  %>"  data-firework-colour="<%= firework.colour  %>" onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
 <% end %>
+</div>
 
 <%= javascript_tag do %>
   window.track_url = '<%= j @show.track_url %>';
@@ -64,29 +62,20 @@
         Forward
       </button>
 
-      <button class="btn btn-primary" data-action="toggle-mute">
-        <i class="glyphicon glyphicon-volume-off"></i>
-        Toggle Mute
+      <button class="btn btn-primary" id="change_song">
+        <i class="glyphicon glyphicon-step-forward"></i>
+        Change Song
       </button>
-
-      <div class="mark-controls">
-        <button class="btn btn-success" data-action="green-mark">
-          <i class="glyphicon glyphicon-flag"></i>
-          Set green mark
-        </button>
-
-        <button class="btn btn-danger" data-action="red-mark">
-          <i class="glyphicon glyphicon-flag"></i>
-          Set red mark
-        </button>
-      </div>
     </div>
 
-    <p class="lead pull-center" id="drop">
-      Drop a song here
-    </p>
-    <div id="progress_bar_download"> </div>
-    <div id="progress_bar_upload"> </div>
+    <div class='upload-area'>
+      <p class="lead pull-center" id="drop">
+        Drop a song here
+      </p>
+      <div id="progress_bar_download"> </div>
+      <div id="progress_bar_upload"> </div>
+    </div>
+    
     <div id="downloading"> </div>
   </div>
 </div>

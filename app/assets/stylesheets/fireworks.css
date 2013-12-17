@@ -6,4 +6,51 @@ body {
 
 #welcome_page_title {
 	font-family: 'Codystar', cursive;
+	font-size: 4em;
+	text-align: center;
+}
+
+#welcome_page_link {
+	text-align: center;
+}
+
+#your_shows {
+  position: absolute;
+  right:1%;
+  top:0%;
+  margin-top: 0%;
+}
+
+#edit_show_name {
+  position: absolute;
+  right:18%;
+  top:0%;
+  display:inline-block;
+  margin-top: 0%;
+
+}
+
+#download_list {
+	position: absolute;
+  right:1%;
+  top:5%;
+  margin-top: 0%;
+
+}
+
+#fireworks_title {
+	position: absolute;
+  right:1%;
+  top:20%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+
+}
+
+
+#fireworks_list {
+  position: absolute;
+  right:1%;
+  top:23%;
+  margin-top: 0%;
 }

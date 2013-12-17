@@ -92,23 +92,30 @@ body {
     position: relative;
 }
 
+.upload-area {
+    position: relative;
+}
+
 #progress-bar {
     position: absolute;
     z-index: 10;
     left: 0;
-    top: 50%;
+    top: 0;
     margin-top: -5px;
     left: 5%;
     width: 90%;
 }
 
 #drop {
-    border: 3px solid #ddd;
-    padding: 5px;
+    position: absolute;
+    padding: 10px;
     width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 10px;
+    margin: 0 auto;
+    left: 25%;
+    text-align: center;
+    border: solid;
+    border-radius: 1em;
+    border-color: #D6D6D6;
 }
 
 #drop.wavesurfer-dragover {
