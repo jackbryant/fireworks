@@ -1,5 +1,18 @@
 class BoardsController < ApplicationController
   
+  protect_from_forgery :except => :auth # stop rails CSRF protection for this action
+
+  Pusher.app_id = '61655'
+  Pusher.key = '26f4232b489d7c8a2e22'
+  Pusher.secret = 'da6df554f835d0121657'
+
+  def auth
+    response = Pusher[params[:channel_name]].authenticate(params[:socket_id], {
+      :user_id => 1, 
+    })
+    render :json => response
+  end
+
   def index
     render nothing: true
   end
@@ -32,5 +45,5 @@ class BoardsController < ApplicationController
   def board_params
     params.require(:board).permit(:name,:boardID)
   end
-  
+
 end
