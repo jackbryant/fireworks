@@ -120,11 +120,11 @@ function addFireworkToTimeline(fireworkId, fireworkName) {
     }]);
 
     // make sure the add gets saved to the DB
-    onChangeOrCreate();
+    onChangeOrCreate(fireworkId);
 }
 
 
-function onChangeOrCreate() { 
+function onChangeOrCreate(fireworkId) { 
 
 
   var item = rowOfSelectedItem();
@@ -134,7 +134,9 @@ function onChangeOrCreate() {
   itemToUpdateData['show_id'] = getCurrentShowID()
   
   // this needs to be the real firework.
-  itemToUpdateData['firework_id'] = 5
+if (!itemToUpdateData['firework_id']) {
+  itemToUpdateData['firework_id'] = fireworkId
+}
 
   saveRecord(baseApiUrl, itemToUpdateData ); 
 }
@@ -234,7 +236,7 @@ function drawVisualization(dataVal, duration) {
   // specify options
   var options = {
       'width':  '100%',
-      'height': '400px',
+      'height': '200px',
       'editable': true, 
       'style': 'box',
       'start' : new Date(2010, 0, 1 , 0, 0,0,0),
@@ -244,7 +246,7 @@ function drawVisualization(dataVal, duration) {
       "zoomMin": 10,
       "zoomMax": duration.duration,
       "zoomable": true,
-      "showMajorLabels": true,
+      "showMajorLabels": false,
       "animateZoom": true,
       "showCustomTime": true,
       'snapEvents' : false,
