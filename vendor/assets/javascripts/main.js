@@ -4,10 +4,11 @@
 var wavesurfer = Object.create(WaveSurfer);
 
 // Init & load audio file
-document.addEventListener('DOMContentLoaded', function () {
+
+function wsLoad() {
     var options = {
         container     : document.querySelector('#waveform'),
-        waveColor     : 'violet',
+        waveColor     : 'navy',
         progressColor : 'purple',
         loaderColor   : 'purple',
         cursorColor   : 'navy',
@@ -32,10 +33,9 @@ document.addEventListener('DOMContentLoaded', function () {
         $('#progress_bar_download').progressbar("option", "value", percent)
     });
     wavesurfer.on('ready', function () {
-        $('#progress_bar_download .ui-progressbar-value').css('background', 'green')
+        $('#progress_bar_download').css('visibility', 'hidden')
         var controls = $('.controls')
         controls.css('visibility', 'visible')
-
     });
 
     // Init
@@ -44,11 +44,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (track_url) { 
       wavesurfer.load(track_url);
+      var dragndrop = $('#drop');
+      dragndrop.css('visibility', 'hidden');
     }
 
     // Start listening to drag'n'drop on document
     wavesurfer.bindDragNDrop('#drop');
-});
+}
+
+document.addEventListener('DOMContentLoaded', wsLoad)
 
 // Play at once when ready
 // Won't work on iOS until you touch the page
@@ -65,20 +69,6 @@ wavesurfer.on('ready', function () {
             }
         },
 
-        'green-mark': function () {
-            wavesurfer.mark({
-                id: 'up',
-                color: 'rgba(0, 255, 0, 0.5)'
-            });
-        },
-
-        'red-mark': function () {
-            wavesurfer.mark({
-                id: 'down',
-                color: 'rgba(255, 0, 0, 0.5)'
-            });
-        },
-
         'back': function () {
             wavesurfer.skipBackward();
         },
@@ -86,10 +76,6 @@ wavesurfer.on('ready', function () {
         'forth': function () {
             wavesurfer.skipForward();
         },
-
-        'toggle-mute': function () {
-            wavesurfer.toggleMute();
-        }
     };
 
     document.addEventListener('keydown', function (e) {

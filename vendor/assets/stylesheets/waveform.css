@@ -68,13 +68,13 @@ body {
 }
 
 .controls {
-    padding: 30px 0 15px;
+    padding: 5px 0 5px;
     text-align: center;
     visibility: hidden;
 }
 
 .controls .btn {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 @media screen and (min-width: 990px) {
@@ -85,10 +85,14 @@ body {
 
 .lead {
     text-align: center;
-    padding: 20px;
+    padding: 5px;
 }
 
 #waveform {
+    position: relative;
+}
+
+.upload-area {
     position: relative;
 }
 
@@ -96,15 +100,22 @@ body {
     position: absolute;
     z-index: 10;
     left: 0;
-    top: 50%;
-    margin-top: -10px;
+    top: 0;
+    margin-top: -5px;
     left: 5%;
     width: 90%;
 }
 
 #drop {
-    border: 3px dashed #ddd;
-    padding: 30px;
+    position: absolute;
+    padding: 10px;
+    width: 50%;
+    margin: 0 auto;
+    left: 25%;
+    text-align: center;
+    border: solid;
+    border-radius: 1em;
+    border-color: #D6D6D6;
 }
 
 #drop.wavesurfer-dragover {

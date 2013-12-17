@@ -72,6 +72,8 @@ group :development, :test do
 
      # gem 'guard'
      gem 'guard-cucumber'
+
+     gem 'poltergeist'
      
 end
 

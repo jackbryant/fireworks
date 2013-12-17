@@ -61,6 +61,7 @@ GEM
       timers (~> 1.1.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
+    cliver (0.2.2)
     cocaine (0.5.3)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
@@ -143,6 +144,11 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     phantomjs (1.9.2.0)
+    poltergeist (1.4.1)
+      capybara (~> 2.1.0)
+      cliver (~> 0.2.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     polyglot (0.3.3)
     pry (0.9.12.4)
       coderay (~> 1.0)
@@ -257,6 +263,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   paperclip
+  poltergeist
   rails (= 4.0.1)
   rails_12factor
   rspec-rails

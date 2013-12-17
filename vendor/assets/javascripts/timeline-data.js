@@ -24,7 +24,6 @@ $(document).ready(function() {
 
     getNewData();
 
-
     // detect key presses.
     $(document).keypress(function(keyPress) {
       var code = keyPress.keyCode || keyPress.which;
@@ -48,16 +47,28 @@ function configureWaveSurfer(timelineData){
  
   wavesurfer.on('ready', function () {
       // wavesurfer.play();
-
+      firedFireworks = [];
       var duration = wavesurfer.backend.getDuration();
      
       drawVisualization(timelineData, {duration: duration * 1000});
-        
+      
+      allFireworks = timeline.getData();
+
       wavesurfer.backend.on('audioprocess', function(progress) {
         var secs = Math.floor(progress)
         var ms = (progress - secs) * 1000
         var date = new Date(2010, 0, 1, 0, 0, secs, ms);
         timeline.setCustomTime(date);
+        allFireworks.forEach(function(firework) {
+          if (date >= firework.start - (1.6 * 1000) && $.inArray(firework, firedFireworks) == -1) {
+            console.log(getFireworkElementByID(firework.firework_id));
+            firedFireworks.push(firework);
+            Fireworks.createParticle(null, null, null, 800);
+          }
+          if (date < firework.start - (1.6 * 1000) && $.inArray(firework, firedFireworks) != -1) {
+            firedFireworks.splice( $.inArray(firework, firedFireworks), 1 );
+          }
+        });
       });
 
       links.events.addListener(timeline, 'timechange', function (time) {
@@ -88,7 +99,6 @@ function displayShit(what) {
 function onSelect() {
     var item = rowOfSelectedItem();
     if (item != undefined) { console.log("item " + item + " selected") } 
-    
 }
 
 
@@ -138,17 +148,23 @@ if (!itemToUpdateData['firework_id']) {
   itemToUpdateData['firework_id'] = fireworkId
 }
 
-  saveRecord(baseApiUrl, itemToUpdateData ); 
+  allFireworks = timeline.getData();
+  console.log("I'm getting some data yo");
+
+  saveRecord(baseApiUrl, itemToUpdateData); 
 }
 
-function getCurrentShowID(){
+function getCurrentShowID() {
   return $( "#mytimeline" ).data( 'show-id' )
 }
 
-function getFireworkColour(){
-  return $( "#mytimeline" ).data( 'show-id' )
+function getFireworkElementByID(id) {
+  return $("ul").find("[data-firework-id='" + id + "']");
 }
 
+// function getFireworkColour(){
+//   return $( "#mytimeline" ).data( 'show-id' )
+// }
 
 function saveRecord(api_url, record) {
   // Javascript was being clever and trying to convert the date string
@@ -236,7 +252,7 @@ function drawVisualization(dataVal, duration) {
   // specify options
   var options = {
       'width':  '100%',
-      'height': '200px',
+      'height': '140px',
       'editable': true, 
       'style': 'box',
       'start' : new Date(2010, 0, 1 , 0, 0,0,0),
@@ -266,10 +282,3 @@ function drawVisualization(dataVal, duration) {
     // Draw our timeline with the created data and options
     timeline.draw(dataVal, options);
 }
-
-
-
-
-
-
-
