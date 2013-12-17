@@ -9,6 +9,7 @@ Fireworks::Application.routes.draw do
 
   get '/data' => 'data#view'
   get "welcome/index"
+  post '/pusher/auth' => 'boards#auth'
 
   resources :shows do
     resources :events

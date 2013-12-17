@@ -1,4 +1,5 @@
-
+<%= javascript_include_tag 'main' %>
+<%= javascript_include_tag 'tracks' %>
 <%= javascript_include_tag 'timeline' %>
 <%= javascript_include_tag 'timeline-data' %>
 <%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css' %>
@@ -12,6 +13,7 @@
 <p id="fireworks_title">Fireworks</p>
 <div id="fireworks_list"><% @fireworks.each_with_index do |firework, i| %>
    <input type="button" value="<%= firework.name %>" data-firework-id="<%= firework.id  %>"  data-firework-colour="<%= firework.colour  %>" onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
+
 <% end %>
 </div>
 

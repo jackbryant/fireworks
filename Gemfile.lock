@@ -43,10 +43,6 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
-    aws-sdk (1.28.1)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
-      uuidtools (~> 2.1)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -86,8 +82,6 @@ GEM
     daemons (1.1.9)
     database_cleaner (1.2.0)
     diff-lcs (1.2.5)
-    em-synchrony (1.0.3)
-      eventmachine (>= 1.0.0.beta.1)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
@@ -96,9 +90,6 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
-    faye-websocket (0.7.1)
-      eventmachine (>= 0.12.0)
-      websocket-driver (>= 0.3.1)
     ffi (1.9.3)
     formatador (0.2.4)
     gherkin (2.12.2)
@@ -113,7 +104,7 @@ GEM
       cucumber (>= 1.2.0)
       guard (>= 1.1.0)
     hike (1.2.3)
-    hiredis (0.4.5)
+    httpclient (2.3.4.1)
     i18n (0.6.9)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -154,6 +145,10 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pusher (0.12.0)
+      httpclient (~> 2.3.0)
+      multi_json (~> 1.0)
+      signature (~> 0.1.6)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -181,7 +176,6 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    redis (3.0.6)
     rspec-core (2.14.7)
     rspec-expectations (2.14.4)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -203,6 +197,7 @@ GEM
       rdoc (~> 3.10)
     shoulda-matchers (2.4.0)
       activesupport (>= 3.0.0)
+    signature (0.1.7)
     slop (3.4.7)
     sprockets (2.10.1)
       hike (~> 1.2)
@@ -233,16 +228,6 @@ GEM
     uglifier (2.3.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    uuidtools (2.1.4)
-    websocket-driver (0.3.1)
-    websocket-rails (0.6.2)
-      em-synchrony
-      faye-websocket
-      hiredis
-      rack
-      rails
-      redis
-      thin
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -250,7 +235,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk
   capybara
   capybara-email
   coffee-rails (~> 4.0.0)
@@ -264,6 +248,7 @@ DEPENDENCIES
   jquery-rails
   paperclip
   poltergeist
+  pusher
   rails (= 4.0.1)
   rails_12factor
   rspec-rails
@@ -275,4 +260,3 @@ DEPENDENCIES
   timecop
   turbolinks
   uglifier (>= 1.3.0)
-  websocket-rails

@@ -117,5 +117,5 @@ wavesurfer.on('mark', function (marker) {
 });
 
 wavesurfer.on('error', function (err) {
-    console.error(err);
+console.error(err);
 });

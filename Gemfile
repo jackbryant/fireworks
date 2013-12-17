@@ -29,11 +29,9 @@ gem 'jbuilder', '~> 1.2'
 
 
 gem 'paperclip'
-gem 'aws-sdk'
-
-gem 'websocket-rails'
 gem 'thin'
-gem  'timecop'
+gem 'timecop'
+gem 'pusher'
 
 
 group :doc do
@@ -42,42 +40,39 @@ group :doc do
 end
 
 group :production do
-    gem 'rails_12factor'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
-    #RRpec for tests
-    gem 'rspec-rails'
-    
-    # capybara for the describe language
-    gem 'capybara'
-    
-    gem 'cucumber-rails', :require => false
-    # database_cleaner is not required, but highly recommended
-    gem 'database_cleaner'
-    
-    
-    # Shoulda matchers for Rspec (makes it easier to write tests)
-    gem 'shoulda-matchers'
-    
-    #factory girl for writing better tests  
-    gem "factory_girl_rails", "~> 4.0"
-    
-    #rails 4 Jasmine settings
-    gem 'jasmine-core', github: 'pivotal/jasmine'
-    gem 'jasmine', github: 'pivotal/jasmine-gem' 
-    
-    #to test emails 
-    gem 'capybara-email'
+  # RSpec for tests
+  gem 'rspec-rails'
 
-     # gem 'guard'
-     gem 'guard-cucumber'
+  # capybara for the describe language
+  gem 'capybara'
 
-     gem 'poltergeist'
-     
+  gem 'cucumber-rails', :require => false
+
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+
+  # Shoulda matchers for Rspec (makes it easier to write tests)
+  gem 'shoulda-matchers'
+
+  # factory girl for writing better tests  
+  gem "factory_girl_rails", "~> 4.0"
+
+  # rails 4 Jasmine settings
+  gem 'jasmine-core', github: 'pivotal/jasmine'
+  gem 'jasmine', github: 'pivotal/jasmine-gem' 
+
+  # to test emails 
+  gem 'capybara-email'
+
+  # gem 'guard'
+  gem 'guard-cucumber'
+
+  gem 'poltergeist'
 end
-
-
 
 
 
