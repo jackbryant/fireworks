@@ -63,9 +63,8 @@ function configureWaveSurfer(timelineData){
         timeline.setCustomTime(date);
         allFireworks.forEach(function(firework) {
           if (date >= firework.start - (1.6 * 1000) && $.inArray(firework, firedFireworks) == -1) {
-            console.log(getFireworkElementByID(firework.firework_id));
             firedFireworks.push(firework);
-            Fireworks.createParticle(null, null, null, 800);
+            Fireworks.createParticle(null, null, null, getFireworkColourByID(firework.firework_id));
           }
           if (date < firework.start - (1.6 * 1000) && $.inArray(firework, firedFireworks) != -1) {
             firedFireworks.splice( $.inArray(firework, firedFireworks), 1 );
@@ -95,12 +94,12 @@ function rowOfSelectedItem() {
 }
 
 function displayShit(what) {
-    $('#displayStuff').html('<p>'+ JSON.stringify(what, null, 4) + '</p>');
+  $('#displayStuff').html('<p>'+ JSON.stringify(what, null, 4) + '</p>');
 };
 
 function onSelect() {
-    var item = rowOfSelectedItem();
-    if (item != undefined) { console.log("item " + item + " selected") } 
+  var item = rowOfSelectedItem();
+  if (item != undefined) { console.log("item " + item + " selected") } 
 }
 
 
@@ -113,31 +112,30 @@ function onDelete(deleteID) {
 }
 
 function addFireworkToTimeline(fireworkId, fireworkName) {
-    var range = timeline.getVisibleChartRange();
-    var start = new Date((range.start.valueOf() + range.end.valueOf()) / 2);
+  var range = timeline.getVisibleChartRange();
+  var start = new Date((range.start.valueOf() + range.end.valueOf()) / 2);
 
-    var content = fireworkName
+  var content = fireworkName
 
-    timeline.addItem({
-        'start': start,
-        'content': fireworkName,
-        'editable' :true
-    });
-    var count = timeline.items.length;    
-    var row = count-1
-   
-   //set the selected state of the item we created.
-    timeline.setSelection([{
-        'row': row
-    }]);
+  timeline.addItem({
+      'start': start,
+      'content': fireworkName,
+      'editable' :true
+  });
+  var count = timeline.items.length;    
+  var row = count-1
+ 
+ //set the selected state of the item we created.
+  timeline.setSelection([{
+      'row': row
+  }]);
 
-    // make sure the add gets saved to the DB
-    onChangeOrCreate();
+  // make sure the add gets saved to the DB
+  onChangeOrCreate(fireworkId);
 }
 
 
-function onChangeOrCreate() { 
-
+function onChangeOrCreate(fireworkId) { 
 
   var item = rowOfSelectedItem();
   var itemToUpdate = timeline.getData();
@@ -146,10 +144,11 @@ function onChangeOrCreate() {
   itemToUpdateData['show_id'] = getCurrentShowID()
   
   // this needs to be the real firework.
-  itemToUpdateData['firework_id'] = 5
+  if (!itemToUpdateData['firework_id']) {
+    itemToUpdateData['firework_id'] = fireworkId
+  }
 
   allFireworks = timeline.getData();
-  console.log("I'm getting some data yo");
 
   saveRecord(baseApiUrl, itemToUpdateData); 
 }
@@ -158,13 +157,10 @@ function getCurrentShowID() {
   return $( "#mytimeline" ).data( 'show-id' )
 }
 
-function getFireworkElementByID(id) {
-  return $("ul").find("[data-firework-id='" + id + "']");
+function getFireworkColourByID(id) {
+  return $('input[data-firework-id=' + id + ']').data('firework-colour');
 }
 
-// function getFireworkColour(){
-//   return $( "#mytimeline" ).data( 'show-id' )
-// }
 
 function saveRecord(api_url, record) {
   // Javascript was being clever and trying to convert the date string
@@ -173,35 +169,35 @@ function saveRecord(api_url, record) {
   record.start = JSON.stringify(record.start, null, 4).replace(/"/g, '')
 
   $.ajax({
-        url: api_url ,
-        type: "post",
-        data:  record,
-        success: function(response){
-          if (debug) {console.log("successful API POST")};   
-         
-          // set the id and database_id of our created object. 
-          if (record['id'] == undefined) { record['id'] = response.id }
-          if (record['database_id']) {record['database_id'] = response.id}
-        },
-        error:function(){
-           if (debug) {console.log("failed API POST")};
-        }
-      });
+    url: api_url ,
+    type: "post",
+    data:  record,
+    success: function(response){
+      if (debug) {console.log("successful API POST")};   
+     
+      // set the id and database_id of our created object. 
+      if (record['id'] == undefined) { record['id'] = response.id }
+      if (record['database_id']) {record['database_id'] = response.id}
+    },
+    error:function(){
+       if (debug) {console.log("failed API POST")};
+    }
+  });
 }
 
 
 function deleteRecord(api_url) {
   
   $.ajax({
-        url: api_url ,
-        type: "delete",
-        success: function(){
-          if (debug) {console.log("successful API DELETE");};
-        },
-        error:function(){
-          if (debug) {console.log("failed API DELETE");};
-        }
-      });
+    url: api_url ,
+    type: "delete",
+    success: function(){
+      if (debug) {console.log("successful API DELETE");};
+    },
+    error:function(){
+      if (debug) {console.log("failed API DELETE");};
+    }
+  });
 }
 
 
@@ -269,16 +265,16 @@ function drawVisualization(dataVal, duration) {
       'showButtonNew' : false
     };
 
-    // Instantiate our timeline object.
-    timeline = new links.Timeline(document.getElementById('mytimeline'));
+  // Instantiate our timeline object.
+  timeline = new links.Timeline(document.getElementById('mytimeline'));
 
-     //listeners for timeline evernts
-    links.events.addListener(timeline, 'select', onSelect );
-    links.events.addListener(timeline, 'delete', onDelete );
-    links.events.addListener(timeline, 'change', onChangeOrCreate );
-    links.events.addListener(timeline, 'add', onChangeOrCreate );
+   //listeners for timeline evernts
+  links.events.addListener(timeline, 'select', onSelect );
+  links.events.addListener(timeline, 'delete', onDelete );
+  links.events.addListener(timeline, 'change', onChangeOrCreate );
+  links.events.addListener(timeline, 'add', onChangeOrCreate );
 
- 
-    // Draw our timeline with the created data and options
-    timeline.draw(dataVal, options);
+
+  // Draw our timeline with the created data and options
+  timeline.draw(dataVal, options);
 }

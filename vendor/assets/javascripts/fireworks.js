@@ -119,8 +119,8 @@ var Fireworks = (function() {
    * detected viewport size
    */
   function setMainCanvasDimensions() {
-    mainCanvas.width = viewportWidth * 0.8;
-    mainCanvas.height = viewportHeight * 0.5;
+    mainCanvas.width = viewportWidth * 0.75;
+    mainCanvas.height = viewportHeight;
   }
 
   /**
@@ -138,7 +138,7 @@ var Fireworks = (function() {
    */
   function clearContext() {
     mainContext.fillStyle = "rgba(0,0,0,0.2)";
-    mainContext.fillRect(0, 0, viewportWidth * 0.8, viewportHeight * 0.5);
+    mainContext.fillRect(0, 0, viewportWidth * 0.75, viewportHeight);
   }
 
   /**
@@ -190,8 +190,8 @@ var Fireworks = (function() {
       new Particle(
         // position
         {
-          x: pos.x || viewportWidth * 0.4,
-          y: pos.y || viewportHeight * 0.5 + 10
+          x: pos.x || viewportWidth * 0.375,
+          y: pos.y || viewportHeight + 10
         },
 
         // target
@@ -233,7 +233,7 @@ var Fireworks = (function() {
    */
   function onWindowResize() {
     viewportWidth = window.innerWidth;
-    viewportHeight = window.innerHeight * 1.5;
+    viewportHeight = window.innerHeight * 0.5;
   }
 
   // declare an API
