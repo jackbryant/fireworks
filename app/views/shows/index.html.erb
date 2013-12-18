@@ -44,9 +44,10 @@
     <li data-board-id='<%= board.id %>' >Name : <%= board.name %>  
     <%= link_to 'Remove', board_path(board), :method => :delete %> 
     </li>  
-    <li>ID : <%= board.boardID %></li>  
-    <input name='board_radios' type='radio' data-board-id='<%= board.boardID %>' />
-    <div class="status">Offline</div>
+    <li>ID : <%= board.boardID %>
+       <input name='board_radios' type='radio' data-board-id='<%= board.boardID %>' />
+       <div class="status">Offline</div>
+    </li>  
   </ul>
   <% end %>
   <p><%= link_to "Add Firework", fireworks_path %></p>
