@@ -1,3 +1,5 @@
+require 'socket'
+
 class ShowsController < ApplicationController
   
   Pusher.app_id = '61655'
@@ -61,11 +63,26 @@ class ShowsController < ApplicationController
     show_id = params['show_id']
     board_id = params['board_id']
     show_track = Show.find(show_id).track_url
-    Pusher.trigger('test_channel', 'new_message', { timing_url: "http://192.168.50.123:3000/shows/#{show_id}/download", mp3_url: "#{show_track}", board_id: "#{board_id}" } )
+
+    ip_address = local_ip
+
+    Pusher.trigger('test_channel', 'new_message', { timing_url: "http://#{ request.host_with_port }/shows/#{show_id}/download", mp3_url: "#{show_track}", board_id: "#{board_id}" } )
     render json: { success: true }
   end
 
   def show_params
     params.require(:show).permit(:name)
   end
+
+  # def local_ip
+  #   orig, Socket.do_not_reverse_lookup = Socket.do_not_reverse_lookup, true
+
+  #   UDPSocket.open do |s|
+  #     s.connect '64.233.187.99', 1
+  #     s.addr.last
+  #   end
+  # ensure
+  #   Socket.do_not_reverse_lookup = orig
+  # end
+
 end

@@ -2,7 +2,7 @@
 
 var timeline;
 var data;
-var baseApiUrl = 'http://0.0.0.0:3000/api/timelines/'
+var baseApiUrl = 'http://' + window.location.host + '/api/timelines/';
 
 var debug = true;
 
