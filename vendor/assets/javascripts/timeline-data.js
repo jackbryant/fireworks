@@ -4,7 +4,7 @@ var timeline;
 var data;
 var baseApiUrl = 'http://0.0.0.0:3000/api/timelines/'
 
-var debug = true
+var debug = true;
 
 /*  Uncoment this for deployment
     It will re-render the timeline if you resize the window.

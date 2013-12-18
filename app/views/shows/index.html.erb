@@ -11,6 +11,7 @@
   <li data-show-id='<%= show.id %>'><%= show.name %>
     <%= link_to 'edit', edit_show_path(show) %>
     <%= link_to 'remove', show_path(show), :method => :delete %>
+    <input name='show_radios' type='radio' data-show-id='<%= show.id %>' />
   </li>  
   </ul>
 <% end %>
@@ -34,6 +35,7 @@
     <%= link_to 'remove', board_path(board), :method => :delete %> 
     <br>
     <div class="status">Offline</div>
+    <input name='board_radios' type='radio' data-board-id='<%= board.boardID %>' />
     </article>  
   </ul>
   <% end %>
@@ -50,8 +52,15 @@
   <%= f.submit 'Save board' %>
 <% end %>
 
+
+<button class="upload" > Upload Show </button>
+
 <script>
-  $(document).ready(function() {    
+  $(document).ready(function() {
+    var debug = true;
+
+    $("input:radio[name=board_radios]:first").attr('checked', true);
+    $("input:radio[name=show_radios]:first").attr('checked', true);
     var pusher = new Pusher('26f4232b489d7c8a2e22', { authEndpoint: '/boards/auth' });
     
     var testing_channel = pusher.subscribe('testing_channel');
@@ -95,5 +104,26 @@
     Pusher.log = function(message) {
       if (window.console && window.console.log) window.console.log(message);
     };
+
+    $('button.upload').on ("click", function() {
+      selected_board_id = $('input[name=board_radios]:checked').data('board-id');
+      selected_show_id = $('input[name=show_radios]:checked').data('show-id');
+
+      var upload_data = { show_id:selected_show_id, board_id: selected_board_id }; 
+
+      $.ajax({
+        url: "/shows/upload",
+        type: "post",
+        data:  upload_data,
+        dataType: 'json',
+        success: function(response){
+          if (debug) {console.log("Show uploaded")};             
+        },
+        error:function(){
+          if (debug) {console.log("Failed show upload")};
+        }
+      });
+    })
+
   });
 </script>
