@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag "index" %>
 <div id='index_page'>
   <h1>Welcome to the Firework App!</h1>
-  <div="shows_div">
+  <div id="shows_div">
 
   <% if flash[:notice] %>
   <%= flash[:notice] %>
@@ -40,13 +40,12 @@
 
 <h3>Your Boards</h3>
 <% @boards.each do |board| %>
-  <ul>
-    <li data-board-id='<%= board.id %>' >Name : <%= board.name %>  
-    <%= link_to 'Remove', board_path(board), :method => :delete %> 
-    </li>  
-    <li>ID : <%= board.boardID %></li>  
-    <input name='board_radios' type='radio' data-board-id='<%= board.boardID %>' />
-    <div class="status">Offline</div>
+  <ul data-board-id='<%= board.boardID %>'>
+    <article data-board-id='<%= board.boardID %>'><%= board.name %> - <%= board.boardID %>
+      <%= link_to 'remove', board_path(board), :method => :delete %> 
+      <input name='board_radios' type='radio' data-board-id='<%= board.boardID %>' />
+      <div class="status">Offline</div>
+    </article>  
   </ul>
   <% end %>
   <p><%= link_to "Add Firework", fireworks_path %></p>
