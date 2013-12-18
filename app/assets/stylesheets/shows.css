@@ -23,7 +23,7 @@
   height: 100%;
 }
 .ui-progressbar .ui-progressbar-overlay {
-    background: url("/assets/animated-overlay.gif");
+  background: url("/assets/animated-overlay.gif");
   height: 100%;
   filter: alpha(opacity=25);
   opacity: 0.25;

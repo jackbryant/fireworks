@@ -1,0 +1,16 @@
+#index_page {
+	top:0%;
+	margin-left: 20px;
+}
+
+#fireworks_index_page {
+	margin-left: 20px;
+}
+
+#boards_div {
+  position: absolute;
+  right:1%;
+  top:0%;
+  margin-top: 0%;
+  padding-top: 67px;
+}

@@ -16,9 +16,9 @@ $ ->
       if percentComplete > 99.9
         $('#progress_bar_upload').css('visibility', 'hidden')
         
-  $( "#change_song" ).click ->
+  $( ".controls" ).on "click", "#change_song", (e) ->
     change_song_button = $( "#change_song" )
-    change_song_button.css('visibility', 'hidden')
+    change_song_button.remove()
     dragndrop = $('#drop')
     dragndrop.css('visibility', 'visible')
 
@@ -28,14 +28,13 @@ $ ->
     controls.css('visibility', 'visible')
     dragndrop = $('#drop')
     dragndrop.css('visibility', 'hidden')
-    change_song_button = $( "#change_song" )
-    change_song_button.css('visibility', 'visible')
+    controls.append('<button class="btn-btn-primary" id="change_song"><i class="glyphicon glyphicon-step-forward"></i>Change Song</button>')
 
     if file
       $("#progress_bar_upload").progressbar()
       $("#progress_bar_download").progressbar()
       $('#progress_bar_download').remove()
-      $('#progress_bar_upload .ui-progressbar-value').css('background', 'orange')
+      $('#progress_bar_upload .ui-progressbar-value').css('background', '#D6D6D6')
       reader.readAsArrayBuffer(file)
       date = Date.now()
       file_name = file.name.replace(/\s+/g, "")

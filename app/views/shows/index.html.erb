@@ -1,40 +1,32 @@
-<h1>Show list</h1>
-<p><%= link_to "Add firework", fireworks_path %></p>
+<%= stylesheet_link_tag "index" %>
+<h1>Welcome to the Firework App!</h1>
+<div id='index_page'>
+  <div="shows_div">
 
-<% if flash[:notice] %>
-<%= flash[:notice] %>
-<% end %>
+  <% if flash[:notice] %>
+  <%= flash[:notice] %>
+  <% end %>
 
-<h3>Your shows</h3>
-<% @shows.each do |show| %>
-<ul>
-  <li data-show-id='<%= show.id %>'><%= show.name %>
-    <%= link_to 'edit', edit_show_path(show) %>
-    <%= link_to 'remove', show_path(show), :method => :delete %>
-  </li>  
-  </ul>
-<% end %>
+  <h3>Add a Show</h3>
+  <%= form_for  @show  do |f| %>
+    <%= f.label :name, 'Show name' %>
+    <%= f.text_field :name %>
+    <%= f.submit 'Save' %>
+  <% end %>
 
-<h3>Add a show</h3>
-<%= form_for  @show  do |f| %>
-  <%= f.label :name, 'Show name' %>
-  <%= f.text_field :name %>
-  <%= f.submit 'Save show' %>
-<% end %>
+  <h3>Your Shows</h3>
+  <% @shows.each do |show| %>
+  <ul>
+    <li data-show-id='<%= show.id %>'><%= show.name %>
+      <%= link_to 'Edit', edit_show_path(show) %>
+      <%= link_to 'Remove', show_path(show), :method => :delete %>
+    </li>  
+    </ul>
+  <% end %>
+  </div>
+<div id="boards_div">
 
-<h3>Your Boards</h3>
-
-<% @boards.each do |board| %>
-<ul>
-  <li data-board-id='<%= board.id %>' >Name : <%= board.name %>  
-  <%= link_to 'remove', board_path(board), :method => :delete %> 
-  </li>  
-  <li>ID : <%= board.boardID %></li>  
-</ul>
-<% end %>
-
-
-<h3>Add a board</h3>
+<h3>Add a Board</h3>
 <%= form_for  @board  do |f| %>
   <%= f.label :name, 'Board name' %>
   <%= f.text_field :name %>
@@ -42,5 +34,19 @@
   <%= f.label :boardID, 'Board ID' %>
   <%= f.text_field :boardID %>
 
-  <%= f.submit 'Save board' %>
+  <%= f.submit 'Save' %>
 <% end %>
+
+<h3>Your Boards</h3>
+<% @boards.each do |board| %>
+  <ul>
+    <li data-board-id='<%= board.id %>' >Name : <%= board.name %>  
+    <%= link_to 'Remove', board_path(board), :method => :delete %> 
+    </li>  
+    <li>ID : <%= board.boardID %></li>  
+  </ul>
+  <% end %>
+  <p><%= link_to "Add Firework", fireworks_path %></p>
+</div>
+</div>
+
