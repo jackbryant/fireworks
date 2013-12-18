@@ -21,7 +21,8 @@
       <%= link_to 'Edit', edit_show_path(show) %>
       <%= link_to 'Remove', show_path(show), :method => :delete %>
     </li>  
-    </ul>
+    <input name='show_radios' type='radio' data-show-id='<%= show.id %>' />
+  </ul>
   <% end %>
   </div>
 <div id="boards_div">
@@ -44,6 +45,7 @@
     <%= link_to 'Remove', board_path(board), :method => :delete %> 
     </li>  
     <li>ID : <%= board.boardID %></li>  
+    <input name='board_radios' type='radio' data-board-id='<%= board.boardID %>' />
   </ul>
   <% end %>
   <p><%= link_to "Add Firework", fireworks_path %></p>
