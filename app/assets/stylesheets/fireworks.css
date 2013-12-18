@@ -2,7 +2,21 @@ body {
 	/*font-family: 'Duru Sans', sans-serif;*/
 	/*font-family: 'Ruluko', sans-serif;*/
 	font-family: 'Roboto', sans-serif;
+	background-image:url('editpagebackground.png');
+	color:#4B4C4D;
 }
+
+a:link {
+	color:#568AE3;
+}  
+
+a:visited {
+	color:#2E5FB3;
+}  
+
+a:hover {
+	color:#153E85;
+}  
 
 #welcome_page_title {
 	font-family: 'Codystar', cursive;
@@ -12,6 +26,8 @@ body {
 
 #welcome_page_link {
 	text-align: center;
+	font-size: 2em;
+	font-family: 'Duru Sans', sans-serif;
 }
 
 #your_shows {
@@ -27,7 +43,7 @@ body {
   top:0%;
   display:inline-block;
   margin-top: 0%;
-
+  width:270px;
 }
 
 #download_list {
@@ -54,3 +70,50 @@ body {
   top:23%;
   margin-top: 0%;
 }
+
+.btn-btn-primary {
+	display: inline-block;
+	position: relative;
+	overflow: visible;
+	width: auto;
+	padding: 5px 10px 6px;
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	margin-right: 2em;
+	background: #595A5C;
+	color: #fff !important;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 1;
+	text-decoration: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	cursor: pointer;
+}
+
+.firework_buttons {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    background: none;
+    margin: 0;
+    padding: 0;
+    color:#568AE3;
+    border: none;
+    cursor: pointer;
+    overflow: visible;
+    width: auto;
+    -moz-user-select: text;
+    display: block;
+}
+
+.firework_buttons:visited {
+	color:#2E5FB3;
+}  
+
+.firework_buttons:hover {
+	color:#153E85;
+}  

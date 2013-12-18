@@ -9,7 +9,7 @@ function wsLoad() {
     var options = {
         container     : document.querySelector('#waveform'),
         waveColor     : 'navy',
-        progressColor : 'purple',
+        progressColor : '#910F15',
         loaderColor   : 'purple',
         cursorColor   : 'navy',
         markerWidth   : 2
@@ -29,7 +29,7 @@ function wsLoad() {
     var progressBar = progressDiv.querySelector('.progress-bar');
     wavesurfer.on('loading', function (percent, xhr) {
         $("#progress_bar_download").progressbar()
-        $('#progress_bar_download .ui-progressbar-value').css('background', 'orange')
+        $('#progress_bar_download .ui-progressbar-value').css('background', '#D6D6D6')
         $('#progress_bar_download').progressbar("option", "value", percent)
     });
     wavesurfer.on('ready', function () {
@@ -46,6 +46,8 @@ function wsLoad() {
       wavesurfer.load(track_url);
       var dragndrop = $('#drop');
       dragndrop.css('visibility', 'hidden');
+      var controls = $('.controls');
+      controls.append('<button class="btn-btn-primary" id="change_song"><i class="glyphicon glyphicon-step-forward"></i>Change Song</button>');
     }
 
     // Start listening to drag'n'drop on document

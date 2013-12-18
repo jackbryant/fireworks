@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "index" %>
+<div id="fireworks_index_page">
 <h3>The fireworks</h3>
 <p><%= link_to "Your shows", shows_path %></p>
 <% if flash[:notice] %>
@@ -43,3 +45,4 @@
 
   <%= f.submit 'Save firework' %>
 <% end %>
+</div>
