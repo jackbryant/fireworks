@@ -13,7 +13,7 @@ class FireworksController < ApplicationController
       flash[:notice] = 'New firework added'
       redirect_to fireworks_path
     else
-      raise "something the fuck went wrong in the Fireworks Controller (create)"
+      raise "Something went wrong in the Fireworks Controller (create)"
     end
   end
 
@@ -29,7 +29,7 @@ class FireworksController < ApplicationController
       flash[:notice] = 'Firework updated'
       redirect_to fireworks_path
     else
-      raise "something the fuck went wrong in the Fireworks Controller (create)"
+      raise "Something went wrong in the Fireworks Controller (create)"
     end
   end
 
@@ -41,7 +41,7 @@ class FireworksController < ApplicationController
       flash[:notice] = 'Firework removed'
         redirect_to fireworks_path
       else
-        raise "something the fuck went wrong in the Fireworks Controller (destroy)"
+        raise "Something went wrong in the Fireworks Controller (destroy)"
     end
   end
 

@@ -63,24 +63,9 @@
     $("input:radio[name=show_radios]:first").attr('checked', true);
     var pusher = new Pusher('26f4232b489d7c8a2e22', { authEndpoint: '/boards/auth' });
     
-    var testing_channel = pusher.subscribe('testing_channel');
+    var testing_channel = pusher.subscribe('test_channel');
     var board_presence_channel = pusher.subscribe('presence-of-boards');
-    var board_connect_channel = pusher.subscribe('board_connect_channel');
-    
-    // testing_channel.bind('new_message', function(data) {
-    //   $('.messages').append("<div class=\"message\">" + data.message + "</div>");
-    // });
 
-    board_connect_channel.bind('connection', function(data) {
-      var connected_board_ids = [];
-      $('article').each(function(index, article) {
-        connected_board_ids.push($(article).data('board-id'));
-      })
-      if($.inArray(data.message, connected_board_ids) == -1) {
-        $('.board_id_input').val(data.message);
-      }
-    })
-    
     board_presence_channel.bind('pusher:subscription_succeeded', function(members) {
       members.each(function(member){
         if (member.info) {
@@ -90,13 +75,19 @@
     });
 
     board_presence_channel.bind('pusher:member_added', function(member) {
-      $('.messages').append("<div class=\"message\">" + member.info.mac + "</div>");
-      console.log('Coming online');
+      // $('.messages').append("<div class=\"message\">" + member.info.mac + "</div>");
       $('ul[data-board-id="' + member.info.mac + '"]').find("div.status").text("Online");
+      
+      var connected_board_ids = [];
+      $('article').each(function(index, article) {
+        connected_board_ids.push($(article).data('board-id'));
+      })
+      if($.inArray(member.info.mac, connected_board_ids) == -1) {
+        $('.board_id_input').val(member.info.mac);
+      }
     });
 
     board_presence_channel.bind('pusher:member_removed', function(member) {
-      console.log('Going offline');
       $('ul[data-board-id="' + member.info.mac + '"]').find("div.status").text("Offline");
     });
 

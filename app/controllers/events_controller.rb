@@ -18,7 +18,7 @@ def destroy
       flash[:notice] = 'Event removed'
       redirect_to edit_show_path(@show)
       else
-        raise "something the fuck went wrong in the Event Controller (destroy)"
+        raise "Something went wrong in the Event Controller (destroy)"
     end
   end
 end

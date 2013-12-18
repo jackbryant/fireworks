@@ -1,5 +1,9 @@
 class ShowsController < ApplicationController
   
+  Pusher.app_id = '61655'
+  Pusher.key = '26f4232b489d7c8a2e22'
+  Pusher.secret = 'da6df554f835d0121657'
+  
   def index
     @show = Show.new
     @shows = Show.all
@@ -21,7 +25,7 @@ class ShowsController < ApplicationController
       flash[:notice] = 'New show created'
       redirect_to shows_path
     else
-      raise "something the fuck went wrong in the Shows Controller"
+      raise "There's been an error in the shows controller, sir"
     end
   end
 
@@ -42,7 +46,7 @@ class ShowsController < ApplicationController
       flash[:notice] = 'Show removed'
         redirect_to @show
       else
-        raise "something the fuck went wrong in the Shows Controller (destroy)"
+       raise "There's been an error in the shows controller (destroy), sir"
     end
   end
 
@@ -57,7 +61,7 @@ class ShowsController < ApplicationController
     show_id = params['show_id']
     board_id = params['board_id']
     show_track = Show.find(show_id).track_url
-    Pusher.trigger('test_channel', 'new_message', { timing_url: "http://192.168.50.123:3000/shows/#{show_id}/download", mp3_url: "#{show_track}", board_id: "#{board_id}" } ) 
+    Pusher.trigger('test_channel', 'new_message', { timing_url: "http://192.168.50.123:3000/shows/#{show_id}/download", mp3_url: "#{show_track}", board_id: "#{board_id}" } )
     render json: { success: true }
   end
 
