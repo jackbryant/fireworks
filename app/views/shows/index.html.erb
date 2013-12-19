@@ -2,10 +2,9 @@
 <%= stylesheet_link_tag "blue" %>
 <%= javascript_include_tag 'icheck' %>
 <%= stylesheet_link_tag "index" %>
-
+<div id="welcome_notice"> Welcome to Launchsh.it! </div>
 <div id='index_page'>
   <div id="shows_div">
-
     <% if flash[:notice] %>
     <%= flash[:notice] %>
     <% end %>
@@ -28,10 +27,9 @@
       <%= f.submit 'Add Show' %>
     <% end %>
   </div>
-
-  <p><%= link_to "Add Fireworks", fireworks_path %></p>
-
   
+  <div class="user_instructions">Select the show and the board you want and click upload</div>
+
   <div id="boards_div">
   <h3>Your Boards</h3>
     <% @boards.each do |board| %>
@@ -58,5 +56,5 @@
 </div>
 
 
-<button class="upload" > Upload Show </button>
+<button class="upload" > Upload </button>
 

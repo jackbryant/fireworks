@@ -6,6 +6,15 @@
 }
 
 #shows_div {
+	border: 1px black solid;
+	border-radius: 10px;
+	padding: 10px;
+	background-color:rgba(0,0,0,0.05);
+	width: 35%;
+	height:600px;
+	margin-right:3px;
+	top:50px;
+	/*background-color: #4D9165;*/
 	/*border: 2px solid black;*/
 }
 
@@ -15,16 +24,34 @@
 }
 
 #boards_div {
-  position: absolute;
+	position:absolute;
   right:1%;
-  top:0%;
-/*  margin-top: 50px;
-*/
-/*  border: 2px solid black;*/
+  border: 1px black solid;
+	border-radius: 10px;
+	padding: 10px;
+	background-color:rgba(0,0,0,0.05);
+	width: 35%;
+	top:95px;
+	height:600px;
+	margin-left: 5px
+	/*background-color: #4D9165;*/
+}
+
+.user_instructions {
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	width: 20%;
+	margin-top: -200px;
+	border: 1px black solid;
+	border-radius: 10px;
+	padding: 4px;
+	background-color:rgba(0,0,0,0.05);
 }
 
 button.upload {
-	margin-left: 45%;
+	margin-top: 50px;
+	margin-left: 47%;
 	display: inline-block;
 	position: relative;
 	overflow: visible;
@@ -46,5 +73,4 @@ button.upload {
 	box-shadow: 0 1px 3px rgba(0,0,0,0.25);
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 	cursor: pointer;
-
 }
