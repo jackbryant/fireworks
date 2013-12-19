@@ -1,4 +1,4 @@
-require 'Time'
+require 'time'
 class Event < ActiveRecord::Base
   belongs_to :firework
 
