@@ -8,9 +8,9 @@
 
 <p id="your_shows"><%= link_to "Your Shows", shows_path %></p>
 <h2 id="edit_show_name">Show: <%= @show.name %></h2>
-<p id="download_list"> <%= link_to 'Download Show', download_show_path(@show) %> </li> </p>
-<p id="add_fireworks_link"><%= link_to "Add Fireworks", fireworks_path %></p>
-<p id="fireworks_title">Fireworks</p>
+<!-- <p id="download_list"> <%= link_to 'Download Show', download_show_path(@show) %> </li> </p> -->
+<p id="add_fireworks_link"><%= link_to "Add a new Firework", fireworks_path %></p>
+<!-- <p id="fireworks_title">Fireworks</p> -->
 <div id="fireworks_list"><% @fireworks.each_with_index do |firework, i| %>
    <input class="firework_buttons" type="button" value="<%= firework.name %>" data-firework-id="<%= firework.id  %>"  data-firework-colour="<%= firework.colour  %>" onclick="addFireworkToTimeline(<%= firework.id  %>, '<%= firework.name %>');">
 <% end %>

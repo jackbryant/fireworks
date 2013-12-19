@@ -22,16 +22,17 @@
       </p>  
     </ul>
     <% end %>
-
+    <div id="add_a_show">
     <h3>Add a Show</h3>
     <%= form_for  @show  do |f| %>
       <%= f.label :name, 'Show name' %>
       <%= f.text_field :name %>
-      <%= f.submit 'Add Show' %>
+      <%= f.submit 'Add Show', :class => 'show_button' %>
     <% end %>
+    </div>
   </div>
   
-  <div class="user_instructions">Select the show and the board you want and click upload</div>
+  <div class="user_instructions">Select the show and the board you want then click upload </div>
 
   <div id="boards_div">
   <h3>Your Boards</h3>
@@ -55,7 +56,7 @@
       <%= f.label :boardID, 'Board ID' %>
       <%= f.text_field :boardID, {:class => 'board_id_input'} %>
 
-      <%= f.submit 'Add Board' %>
+      <%= f.submit 'Add Board', :class => 'board_button' %>
     <% end %>
   </div>
 </div>

@@ -8,8 +8,8 @@ var wavesurfer = Object.create(WaveSurfer);
 function wsLoad() {
     var options = {
         container     : document.querySelector('#waveform'),
-        waveColor     : 'navy',
-        progressColor : '#910F15',
+        waveColor     : '#4058E3',
+        progressColor : '#081A80',
         loaderColor   : 'purple',
         cursorColor   : 'navy',
         markerWidth   : 2

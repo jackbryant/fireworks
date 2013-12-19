@@ -1,4 +1,4 @@
-/*a:link {
+a:link {
 	color:#153E85;
 }  
 
@@ -9,7 +9,7 @@ a:visited {
 a:hover {
 	color:#153E85;
 }  
-*/
+
 /*#welcome_page_title {
 	font-family: 'Codystar', cursive;
 	font-size: 4em;
@@ -84,7 +84,7 @@ body {
 #fireworks_list {
   position: absolute;
   right:1%;
-  top:23%;
+  top:20%;
   margin-top: 0%;
 }
 
