@@ -61,6 +61,9 @@ class ShowsController < ApplicationController
     show_id = params['show_id']
     board_id = params['board_id']
     show_track = Show.find(show_id).track_url
+
+    puts request.host_with_port
+
     Pusher.trigger('test_channel', 'new_message', { timing_url: "http://192.168.50.123:3000/shows/#{show_id}/download", mp3_url: "#{show_track}", board_id: "#{board_id}" } )
     render json: { success: true }
   end
@@ -68,4 +71,5 @@ class ShowsController < ApplicationController
   def show_params
     params.require(:show).permit(:name)
   end
+
 end
