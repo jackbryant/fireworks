@@ -7,7 +7,7 @@
 
 #shows_div {
 	border: 1px black solid;
-	border-radius: 10px;
+	border-radius: 3px;
 	padding: 10px;
 	background-color:rgba(0,0,0,0.05);
 	width: 35%;
@@ -27,14 +27,13 @@
 	position:absolute;
   right:1%;
   border: 1px black solid;
-	border-radius: 10px;
+	border-radius: 3px;
 	padding: 10px;
 	background-color:rgba(0,0,0,0.05);
 	width: 35%;
 	top:95px;
 	height:600px;
-	margin-left: 5px
-	/*background-color: #4D9165;*/
+	margin-left: 5px;
 }
 
 .user_instructions {
@@ -44,7 +43,7 @@
 	width: 20%;
 	margin-top: -200px;
 	border: 1px black solid;
-	border-radius: 10px;
+	border-radius: 3px;
 	padding: 4px;
 	background-color:rgba(0,0,0,0.05);
 }

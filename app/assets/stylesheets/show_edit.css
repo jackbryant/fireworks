@@ -14,12 +14,17 @@ a:hover {
 	font-family: 'Codystar', cursive;
 	font-size: 4em;
 	text-align: center;
-}
+}*/
 
-#welcome_page_link {
+/*#welcome_page_link {
 	text-align: center;
 	font-size: 2em;
 	font-family: 'Duru Sans', sans-serif;
+}*/
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color:#7F8581;
 }
 
 #welcome_notice {
@@ -32,7 +37,7 @@ a:hover {
   padding-top: 4px;
   padding-bottom: 4px;
   font-size:2em;
-}*/
+}
 
 #your_shows {
   position: absolute;
