@@ -3,11 +3,11 @@ a:link {
 }  
 
 a:visited {
-	color:#2E5FB3;
+	color:#153E85;
 }  
 
 a:hover {
-	color:#153E85;
+	color:#568AE3;
 }  
 
 /*#welcome_page_title {
@@ -27,32 +27,17 @@ body {
   color:#7F8581;
 }
 
-#welcome_notice {
-  width:100%;
-  height:40px;
-  border-bottom: 1px solid black;
-  background-color: #282B29;
-  text-decoration: underline;
-  color:white;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  font-size:2em;
-}
-
-#your_shows {
-  position: absolute;
-  right:1%;
-  top:0%;
-  margin-top: 0%;
-}
-
 #edit_show_name {
+ /* border: 1px black solid;*/
   position: absolute;
-  right:18%;
+  margin-left:0%;
+  padding-left:1%;
   top:0%;
-  display:inline-block;
+ /* display:inline-block;*/
   margin-top: 0%;
-  width:270px;
+  width:512px;
+  height:50px;
+  font-size:1.5em;
 }
 
 #download_list {
@@ -62,19 +47,45 @@ body {
   margin-top: 0%;
 }
 
+
+#fireworks_section {
+  right:0%;
+  width:512px;
+  height:339px;
+  float:right;
+  top:0%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  position:absolute;
+  background-color:rgba(0,0,0,0.05);
+}
+
 #add_fireworks_link {
   position: absolute;
   right:1%;
-  top:17%;
+  top:6%;
   margin-top: 0%;
   margin-bottom: 0%;
+  padding-top:18px;
+  font-size:16px;
+  display:block;
 
 }
 
-#fireworks_title {
-	position: absolute;
+#your_shows {
+  display: block;
+  position: absolute;
   right:1%;
-  top:20%;
+  top:0%;
+  margin-top: 0%;
+  font-size:16px;
+}
+
+#fireworks_title {
+  position: absolute;
+  left:1%;
+  top:43%;
+  font-size:1.2em;
   margin-top: 0%;
   margin-bottom: 0%;
 
@@ -83,54 +94,59 @@ body {
 
 #fireworks_list {
   position: absolute;
-  right:1%;
-  top:20%;
   margin-top: 0%;
+  top:50%;
 }
 
 .btn-btn-primary {
-	display: inline-block;
-	position: relative;
-	overflow: visible;
-	width: auto;
-	padding: 5px 10px 6px;
-	border-bottom: 1px solid rgba(0,0,0,0.25);
-	margin-right: 2em;
-	background: #595A5C;
-	color: #fff !important;
-	font-size: 13px;
-	font-weight: bold;
-	line-height: 1;
-	text-decoration: none;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-	box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-	cursor: pointer;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+  width: auto;
+  padding: 5px 10px 6px;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  margin-right: 2em;
+  background: #595A5C;
+  color: #fff !important;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1;
+  text-decoration: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  cursor: pointer;
 }
 
 .firework_buttons {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1em;
-    background: none;
-    margin: 0;
-    padding: 0;
-    color:#568AE3;
-    border: none;
-    cursor: pointer;
-    overflow: visible;
-    width: auto;
-    -moz-user-select: text;
-    display: block;
+  margin-left: 0%;
+  display:block;
+  position: relative;
+  overflow: visible;
+  width:121px;
+  padding: 5px 10px 6px;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  background: #1c94c4;
+  color: #fff !important;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1;
+  text-decoration: none;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  cursor: pointer;
 }
 
-.firework_buttons:visited {
-	color:#2E5FB3;
+/*.firework_buttons:visited {
+  color:#153E85;
 }  
 
 .firework_buttons:hover {
-	color:#153E85;
-}  
+  color:#568AE3;
+}  */
