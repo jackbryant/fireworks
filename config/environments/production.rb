@@ -28,9 +28,10 @@ Fireworks::Application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
+   config.assets.precompile += %w(fireworkscss blue.scss fire.css landing.scss main.js tracks.js.coffee timeline.js timeline-data.js fireworks.js shows_index.js icheck.js)
 
   # Generate digests for assets URLs.
-  config.assets.digest = false
+  config.assets.digest = true
 
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
