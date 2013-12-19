@@ -134,6 +134,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    pg (0.17.0)
     phantomjs (1.9.2.0)
     poltergeist (1.4.1)
       capybara (~> 2.1.0)
@@ -208,7 +209,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.8)
     thin (1.6.1)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -228,6 +228,7 @@ GEM
     uglifier (2.3.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    websocket-driver (0.3.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -247,6 +248,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   paperclip
+  pg
   poltergeist
   pusher
   rails (= 4.0.1)
@@ -255,7 +257,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   shoulda-matchers
-  sqlite3
   thin
   timecop
   turbolinks
