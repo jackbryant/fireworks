@@ -1,0 +1,31 @@
+<script>
+  
+  $(document).ready(function() {
+    $('img').on("click", function(){
+      var debug = true;
+      selected_board_id = $('#board_id').val();
+
+      var launch_data = { board_id: selected_board_id }; 
+
+      $.ajax({
+        url: "/shows/fire",
+        type: "post",
+        data:  launch_data,
+        dataType: 'json',
+        success: function(response){
+          if (debug) {console.log("Show launched")};             
+        },
+        error:function(){
+          if (debug) {console.log("Failed show launch")};
+        }
+      });
+    })
+  })
+
+</script>
+
+<%= hidden_field_tag :board_id, params[:board_id] %>
+
+<%= stylesheet_link_tag "fire" %>
+
+<%= image_tag "red-button.png" %>

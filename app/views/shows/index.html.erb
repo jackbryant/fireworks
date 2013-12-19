@@ -32,7 +32,29 @@
     </div>
   </div>
   
-  <div class="user_instructions">Select the show and the board you want then click upload </div>
+  <div class="central_info">
+    <div class="upload_info">
+      <div class="user_instructions">Select the show and the board you want then click upload </div>
+      <button class="upload" > Upload </button>
+    </div>
+    <div class="launch_info">
+      <div class="launch_instructions">If you're ready to launch then tick the board and click Ready to Launch </div>
+      <form method="get" action="/shows/launch" id='launcher'>
+        <%= hidden_field_tag 'board_id' %>
+        <button type="submit" class="fire" > Ready to Launch </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      $('#launcher').on('submit', function() {
+        var board_id = $('input[name=board_radios]:checked').data('board-id')
+
+        $('#board_id').val(board_id)
+      });
+    })
+  </script>
 
   <div id="boards_div">
   <h3>Your Boards</h3>
@@ -61,5 +83,5 @@
   </div>
 </div>
 
-<button class="upload" > Upload </button>
+
 

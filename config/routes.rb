@@ -11,10 +11,16 @@ Fireworks::Application.routes.draw do
   get "welcome/index"
   post '/pusher/auth' => 'boards#auth'
   post '/shows/upload' => 'shows#upload'
+  post '/shows/fire' => 'shows#fire'
 
   resources :shows do
     resources :events
-    member {get "download"}
+    member {
+      get "download"
+    }
+    collection {
+      get 'launch'
+    }
 
   end
   
