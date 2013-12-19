@@ -1,14 +1,15 @@
 body {
-	/*font-family: 'Duru Sans', sans-serif;*/
-	/*font-family: 'Ruluko', sans-serif;*/
 	font-family: 'Roboto', sans-serif;
-	background-image:url('editpagebackground.png');
-	color:#4B4C4D;
+	background-image:url(firework_sized.png);
+	background-size:cover;
+	color:#F7F7F7;
 }
 
-a:link {
-	color:#568AE3;
-}  
+div.text {
+	margin-right: 10%;
+	width: 40%;
+	margin-top: 18%;
+}
 
 a:visited {
 	color:#2E5FB3;
@@ -25,9 +26,26 @@ a:hover {
 }
 
 #welcome_page_link {
+	background-color: rgba(255,255,255,0.2);
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	border: 2px solid white;
+	border-radius: 10px;
 	text-align: center;
-	font-size: 2em;
+	font-size: 2.2em;
 	font-family: 'Duru Sans', sans-serif;
+	color: #F5F5F5;
+}
+
+#welcome_page_link a {
+	text-decoration: none;
+	color: #F7F7F7;
+}
+
+#welcome_page_link a:hover {
+	text-decoration: none;
+	color: #93C76D;
 }
 
 #your_shows {

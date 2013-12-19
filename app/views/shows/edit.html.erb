@@ -6,7 +6,7 @@
 <%= javascript_include_tag 'timeline-data' %>
 <%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css' %>
 
-<p id="your_shows"><%= link_to "Your shows", shows_path %></p>
+<p id="your_shows"><%= link_to "Your Shows", shows_path %></p>
 <h2 id="edit_show_name">Show: <%= @show.name %></h2>
 <p id="download_list"> <%= link_to 'Download Show', download_show_path(@show) %> </li> </p>
 
@@ -55,7 +55,7 @@
         Play
         /
         <i class="glyphicon glyphicon-pause"></i>
-        Pause
+        Pause Show
       </button>
 
       <button class="btn-btn-primary" data-action="forth">
@@ -66,7 +66,7 @@
 
     <div class='upload-area'>
       <p class="lead pull-center" id="drop">
-        Drop a song here
+        To get started, Drop a song here
       </p>
       <div id="progress_bar_download"> </div>
       <div id="progress_bar_upload"> </div>

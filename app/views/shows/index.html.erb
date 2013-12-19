@@ -7,13 +7,6 @@
   <%= flash[:notice] %>
   <% end %>
 
-  <h3>Add a Show</h3>
-  <%= form_for  @show  do |f| %>
-    <%= f.label :name, 'Show name' %>
-    <%= f.text_field :name %>
-    <%= f.submit 'Save' %>
-  <% end %>
-
   <h3>Your Shows</h3>
   <% @shows.each do |show| %>
   <ul>
@@ -24,19 +17,17 @@
     </li>  
   </ul>
   <% end %>
+
+   <h3>Add a Show</h3>
+  <%= form_for  @show  do |f| %>
+    <%= f.label :name, 'Show name' %>
+    <%= f.text_field :name %>
+    <%= f.submit 'Save' %>
+  <% end %>
+
   </div>
+
 <div id="boards_div">
-
-<h3>Add a Board</h3>
-<%= form_for  @board  do |f| %>
-  <%= f.label :name, 'Board name' %>
-  <%= f.text_field :name %>
-
-  <%= f.label :boardID, 'Board ID' %>
-  <%= f.text_field :boardID, {:class => 'board_id_input'} %>
-
-  <%= f.submit 'Save' %>
-<% end %>
 
 <h3>Your Boards</h3>
 <% @boards.each do |board| %>
@@ -48,14 +39,28 @@
     </article>  
   </ul>
   <% end %>
-  <p><%= link_to "Add Firework", fireworks_path %></p>
+
+  <h3>Add a Board</h3>
+<%= form_for  @board  do |f| %>
+  <%= f.label :name, 'Board name' %>
+  <%= f.text_field :name %>
+
+  <%= f.label :boardID, 'Board ID' %>
+  <%= f.text_field :boardID, {:class => 'board_id_input'} %>
+
+  <%= f.submit 'Save' %>
+<% end %>
+
+  <p><%= link_to "Add a new Firework", fireworks_path %></p>
 </div>
 </div>
 
 <button class="upload" > Upload Show </button>
 
+
 <script>
   $(document).ready(function() {
+
     var debug = true;
 
     $("input:radio[name=board_radios]:first").attr('checked', true);
