@@ -6,15 +6,6 @@ var baseApiUrl = 'http://' + window.location.host + '/api/timelines/';
 
 var debug = true;
 
-/*  Uncoment this for deployment
-    It will re-render the timeline if you resize the window.
-*/
-
-// $(window).resize(function () { 
-//     timeline.render
-// });
-
-
 // Called whent the page is ready
 $(document).ready(function() {
 
