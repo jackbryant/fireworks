@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
   var debug = true;
 
   var pusher = new Pusher('26f4232b489d7c8a2e22', { authEndpoint: '/boards/auth' });
@@ -11,18 +10,17 @@ $(document).ready(function() {
   board_presence_channel.bind('pusher:subscription_succeeded', function(members) {
     members.each(function(member){
       if (member.info) {
-        $('ul[data-board-id="' + member.info.mac + '"]').find("div.status").text("Online");
+        $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").text("Online");
       }
     });
   });
 
   board_presence_channel.bind('pusher:member_added', function(member) {
-    // $('.messages').append("<div class=\"message\">" + member.info.mac + "</div>");
-    $('ul[data-board-id="' + member.info.mac + '"]').find("div.status").text("Online");
+    $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").text("Online");
     
     var connected_board_ids = [];
-    $('article').each(function(index, article) {
-      connected_board_ids.push($(article).data('board-id'));
+    $('p.board_p').each(function(index, p) {
+      connected_board_ids.push($(p).data('board-id'));
     })
     if($.inArray(member.info.mac, connected_board_ids) == -1) {
       $('.board_id_input').val(member.info.mac);
@@ -30,7 +28,7 @@ $(document).ready(function() {
   });
 
   board_presence_channel.bind('pusher:member_removed', function(member) {
-    $('ul[data-board-id="' + member.info.mac + '"]').find("div.status").text("Offline");
+    $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").text("Offline");
   });
 
   
@@ -58,7 +56,13 @@ $(document).ready(function() {
     });
   })
 
-  // $("input:radio[name=board_radios]:first").iCheck('check');
-  // $("input:radio[name=show_radios]:first").iCheck('check');
+  $('#launcher').on('submit', function() {
+    var board_id = $('input[name=board_radios]:checked').data('board-id')
+
+    $('#board_id').val(board_id)
+  });
+
+  $("input:radio[name=board_radios]:first").attr('checked', true);
+  $("input:radio[name=show_radios]:first").attr('checked', true);
 
 });

@@ -3,24 +3,22 @@
 <%= stylesheet_link_tag "index" %>
 <div id="welcome_notice">Launchsh.it</div>
   
-    <% if flash[:notice] %>
+  <% if flash[:notice] %>
     <div class="flash-true"> 
       <%= flash[:notice] %>
     </div>
-    <% else %>
-    <div class="flash"> 
-     
-    </div>
-    <% end %>
-<div id='outer'>
- 
+  <% else %>
+    <div class="flash"></div>
+  <% end %>
+  
+  <div id='outer'>
 
     <div class="wide_col">
 
       <h2>Your Shows</h2>
       <% @shows.each do |show| %>
       <ul>
-        <p class="form_p" data-show-id='<%= show.id %>'>
+        <p class="form_p show_p" data-show-id='<%= show.id %>'>
           <input name='show_radios' type='radio' data-show-id='<%= show.id %>' />
            
            <span class="radio_link"><%= link_to show.name, edit_show_path(show) %></span>
@@ -34,86 +32,71 @@
       
     </div>
 
-  <script>
-    $(document).ready(function(){
-      $('#launcher').on('submit', function() {
-        var board_id = $('input[name=board_radios]:checked').data('board-id')
+    <div class="wide_col">
+    <h2>Your Boards</h2>
+      <% @boards.each do |board| %>
+       
+        <ul data-board-id='<%= board.boardID %>'>
+          <p class="form_p board_p" data-board-id='<%= board.boardID %>'>
+          <!-- <article data-board-id='<%= board.boardID %>'> -->
+          <input name='board_radios' type='radio' data-board-id='<%= board.boardID %>' />
+          <%= board.name %> - <%= board.boardID %> 
 
-        $('#board_id').val(board_id)
-      });
-    })
-  </script>
+            <div class="form_padder">
+            <span class="status">Offline</span>
+            <br/>
+          <%= link_to 'remove', board_path(board), :method => :delete %> 
+            
+            </div>
+          <!-- </article>   -->
+          </p>
+        </ul>
+      <% end %>
 
-        <div class="wide_col">
-        <h2>Your Boards</h2>
-          <% @boards.each do |board| %>
-           
-            <ul>
-            <p class="form_p" data-board-id='<%= board.boardID %>'>
-              <!-- <article data-board-id='<%= board.boardID %>'> -->
-              <input name='board_radios' type='radio' data-board-id='<%= board.boardID %>' />
-              <%= board.name %> - <%= board.boardID %> 
-               
-
-                <div class="form_padder">
-                <span class="status">Offline</span>
-                <br/>
-              <%= link_to 'remove', board_path(board), :method => :delete %> 
-                
-                </div>
-              <!-- </article>   -->
-              </p>
-            </ul>
-          <% end %>
-
-        
-        </div>
+    
+    </div>
 
 
-         <div class="narrow_col">
-           <h2>Update boards</h2>
-           <p>Select a show and a board to upload track and timing.</p>
-           <button class="fw_button" > Upload to board</button>
-           <p>When you are ready...</p>
-            <form method="get" action="/shows/launch" id='launcher'>
-              <%= hidden_field_tag 'board_id'  %>
-              <button type="submit" class="fw_button" > Fire the show! </button>
-            </form>
+    <div class="narrow_col">
+      <h2>Update boards</h2>
+      <p>Select a show and a board to upload track and timing.</p>
+      <button class="fw_button upload" > Upload to board</button>
+      <p>When you are ready...</p>
+      <form method="get" action="/shows/launch" id='launcher'>
+        <%= hidden_field_tag 'board_id'  %>
+        <button type="submit" class="fw_button" > Fire the show! </button>
+      </form>
 
-        </div>
-        <div style="clear:both;"></div>
+  </div>
+  <div style="clear:both;"></div>
 
-        <div class="wide_col">
-         
-            <h3>Add a Show</h3>
-            <%= form_for  @show  do |f| %>
-              <%= f.label :name, 'Show name' , {:class => 'form_text_label'}%>
-               </br>
-              <%= f.text_field :name, {:class => 'form_text_field'} %>
-               </br>
-              <%= f.submit 'Add Show', :class => 'fw_button' %>
-            <% end %>
-          
+  <div class="wide_col">
+
+  <h3>Add a Show</h3>
+  <%= form_for  @show  do |f| %>
+    <%= f.label :name, 'Show name' , {:class => 'form_text_label'}%>
+     </br>
+    <%= f.text_field :name, {:class => 'form_text_field'} %>
+     </br>
+    <%= f.submit 'Add Show', :class => 'fw_button' %>
+  <% end %>
 
 
-        </div>
-        <div class="wide_col">
-            <h3>Add a Board</h3>
-          <%= form_for  @board  do |f| %>
-            <%= f.label :name, 'Board name' , {:class => 'form_text_label'}%>
-            </br>
-            <%= f.text_field :name , {:class => 'form_text_field'} %>
-            </br>
-            <%= f.label :boardID, 'Board ID' , {:class => 'form_text_label'}%>
-            </br>
-            <%= f.text_field :boardID, {:class => 'form_text_field'} %>
-           </br>
-            <%= f.submit 'Add Board', :class => 'fw_button' %>
-          <% end %>
+  </div>
+  <div class="wide_col">
+    <h3>Add a Board</h3>
+    <%= form_for  @board  do |f| %>
+      <%= f.label :name, 'Board name' , {:class => 'form_text_label'}%>
+      </br>
+      <%= f.text_field :name , {:class => 'form_text_field'} %>
+      </br>
+      <%= f.label :boardID, 'Board ID' , {:class => 'form_text_label'}%>
+      </br>
+      <%= f.text_field :boardID, {:class => 'form_text_field'} %>
+     </br>
+      <%= f.submit 'Add Board', :class => 'fw_button' %>
+    <% end %>
 
-        </div>
-        <div id="blank_div"></div>
+  </div>
+  <div id="blank_div"></div>
 </div>
-
-
-
