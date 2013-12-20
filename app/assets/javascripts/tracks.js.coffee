@@ -28,7 +28,7 @@ $ ->
     controls.css('visibility', 'visible')
     dragndrop = $('#drop')
     dragndrop.css('visibility', 'hidden')
-    controls.append('<button class="btn-btn-primary" id="change_song"><i class="glyphicon glyphicon-step-forward"></i>Change Song</button>')
+    controls.append('<button class="fw_button" id="change_song"><i class="glyphicon glyphicon-step-forward"></i>Change Song</button>')
 
     if file
       $("#progress_bar_upload").progressbar()

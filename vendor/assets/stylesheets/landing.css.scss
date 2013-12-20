@@ -1,8 +1,9 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	background-image:asset-url('fw-small.png');
+  background-repeat: none;
 	background-size:cover;
-	color:#F7F7F7;
+	color:#F5F5F5;
 }
 
 div.text {
@@ -12,40 +13,43 @@ div.text {
 }
 
 a:visited {
-	color:#2E5FB3;
+	color:#F5F5F5;
 }  
 
 a:hover {
-	color:#153E85;
+	color:#F5F5F5;
 }  
 
 #welcome_page_title {
 	font-family: 'Codystar', cursive;
 	font-size: 4em;
 	text-align: center;
+  letter-spacing:3pt;
 }
 
 #welcome_page_link {
-	background-color: rgba(255,255,255,0.2);
+	background-color: rgba(255,255,255,0);
 	margin-left: auto;
 	margin-right: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
 	width: 50%;
-	border: 2px solid white;
-	border-radius: 10px;
+	border: 1px solid rgba(255,255,255,0.2);
+	border-radius: 3px;
 	text-align: center;
-	font-size: 2.2em;
+	font-size: 1.8em;
 	font-family: 'Duru Sans', sans-serif;
 	color: #F5F5F5;
 }
 
 #welcome_page_link a {
 	text-decoration: none;
-	color: #F7F7F7;
+	color: #F5F5F5;
 }
 
 #welcome_page_link a:hover {
 	text-decoration: none;
-	color: #93C76D;
+	color: #BEBEBE;
 }
 
 #welcome_notice {

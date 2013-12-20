@@ -28,8 +28,8 @@ Fireworks::Application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
-  config.assets.precompile += %w(fireworks.css blue.css fire.css landing.css index.css)
-  config.assets.precompile += %w(main.js tracks.js timeline.js timeline-data.js fireworks.js shows_index.js icheck.js)
+  config.assets.precompile += %w(fireworks.css fire.css landing.css index.css)
+  config.assets.precompile += %w(main.js tracks.js timeline.js timeline-data.js fireworks.js shows_index.js)
 
   # Generate digests for assets URLs.
   config.assets.digest = true
