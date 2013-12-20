@@ -43,7 +43,7 @@
           <%= board.name %> - <%= board.boardID %> 
 
             <div class="form_padder">
-            <span class="status">Offline</span>
+            <span class="status">✘ Offline</span>
             <br/>
           <%= link_to 'remove', board_path(board), :method => :delete %> 
             
@@ -92,7 +92,7 @@
       </br>
       <%= f.label :boardID, 'Board ID' , {:class => 'form_text_label'}%>
       </br>
-      <%= f.text_field :boardID, {:class => 'form_text_field'} %>
+      <%= f.text_field :boardID, {:class => 'form_text_field board_id_input'} %>
      </br>
       <%= f.submit 'Add Board', :class => 'fw_button' %>
     <% end %>

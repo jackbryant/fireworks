@@ -10,13 +10,15 @@ $(document).ready(function() {
   board_presence_channel.bind('pusher:subscription_succeeded', function(members) {
     members.each(function(member){
       if (member.info) {
-        $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").text("Online");
+        $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").text("✔︎ Online");
+        $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").css("color","green");
       }
     });
   });
 
   board_presence_channel.bind('pusher:member_added', function(member) {
-    $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").text("Online");
+    $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").text("✔︎ Online");
+    $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").css("color","green");
     
     var connected_board_ids = [];
     $('p.board_p').each(function(index, p) {
@@ -28,7 +30,8 @@ $(document).ready(function() {
   });
 
   board_presence_channel.bind('pusher:member_removed', function(member) {
-    $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").text("Offline");
+    $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").text("✘ Offline");
+    $('ul[data-board-id="' + member.info.mac + '"]').find("span.status").css("color","red");
   });
 
   
@@ -64,5 +67,9 @@ $(document).ready(function() {
 
   $("input:radio[name=board_radios]:first").attr('checked', true);
   $("input:radio[name=show_radios]:first").attr('checked', true);
+
+  // $(document).change(function(){
+  //   var status = $('.status').val()
+  // });
 
 });
