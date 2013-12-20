@@ -106,6 +106,9 @@ div.timeline-event-line {
 }
 
 div.timeline-event-content {
+    color: #5E5E5E;
+
+    font-family: 'Roboto', sans-serif;
     margin: 2px;
     white-space: nowrap;
     overflow: hidden;

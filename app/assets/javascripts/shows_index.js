@@ -1,8 +1,5 @@
 $(document).ready(function() {
-  $('input').iCheck({
-    radioClass: 'iradio_square-blue',
-    increaseArea: '20%'
-  });
+
 
   var debug = true;
 
@@ -61,7 +58,7 @@ $(document).ready(function() {
     });
   })
 
-  $("input:radio[name=board_radios]:first").iCheck('check');
-  $("input:radio[name=show_radios]:first").iCheck('check');
+  // $("input:radio[name=board_radios]:first").iCheck('check');
+  // $("input:radio[name=show_radios]:first").iCheck('check');
 
 });

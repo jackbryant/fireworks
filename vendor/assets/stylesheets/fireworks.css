@@ -1,7 +1,0 @@
-#library {
-  display: none;
-}
-
-canvas #fireworks_visualiser {
-  -webkit-transform: translateZ(0);
-}

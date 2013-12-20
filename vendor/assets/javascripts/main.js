@@ -47,7 +47,7 @@ function wsLoad() {
       var dragndrop = $('#drop');
       dragndrop.css('visibility', 'hidden');
       var controls = $('.controls');
-      controls.append('<button class="btn-btn-primary" id="change_song"><i class="glyphicon glyphicon-step-forward"></i>Change Song</button>');
+      controls.append('<button class="fw_button" id="change_song"><i class="glyphicon glyphicon-step-forward"></i>Change Song</button>');
     }
 
     // Start listening to drag'n'drop on document

@@ -58,7 +58,7 @@ var Fireworks = (function() {
     setMainCanvasDimensions();
 
     // add the canvas in
-    $('body').prepend(mainCanvas);
+    $('#left_col').prepend(mainCanvas);
     // document.addEventListener('mousedown', createFirework, true);
     // document.addEventListener('mousedown', logTimeToConsoleDown, true);
     // document.addEventListener('mouseup', logTimeToConsoleUp, true);
@@ -121,6 +121,9 @@ var Fireworks = (function() {
   function setMainCanvasDimensions() {
     mainCanvas.width = viewportWidth * 0.6;
     mainCanvas.height = viewportHeight * 0.5;
+    // mainCanvas.width = 800;
+    // mainCanvas.height = 365;
+
   }
 
   /**
@@ -234,6 +237,9 @@ var Fireworks = (function() {
   function onWindowResize() {
     viewportWidth = window.innerWidth;
     viewportHeight = window.innerHeight * 1;
+
+
+  
   }
 
   // declare an API
