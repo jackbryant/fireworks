@@ -10,4 +10,4 @@ The hardware consists of a Rasperry Pi running Ruby 2.0
 
 If you wish to contribute to the project, clone the Github repo, run bundle install, rake db:create and rake db:migrate in the command line, work your magic then send us a pull request. 
 
-You can find the application at www.launchit.herokuapp.com
+You can find the application at http://launchit.herokuapp.com
