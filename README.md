@@ -11,6 +11,6 @@ Built using
 
 The hardware consists of a Rasperry Pi running Ruby 2.0
 
-Functionally the project works as explained however we have not finished work on the front-end. If you wish to contribute to the project, clone the Github repo, run bundle install, rake db:create and rake db:migrate in the command line, work your magic then send us a pull request. 
+Functionally, the project works as explained, however, we have not finished work on the front-end. If you wish to contribute to the project, clone the Github repo, run bundle install, rake db:create and rake db:migrate in the command line, work your magic then send us a pull request. 
 
 You can find the application at [here](http://launchit.herokuapp.com).
